@@ -1,4 +1,5 @@
 import React from "react"
-const App = () => <div>hello world</div>
+import { Button } from 'antd'
+const App = () => <Button type='primary'>hello world</Button>
 
 export default App

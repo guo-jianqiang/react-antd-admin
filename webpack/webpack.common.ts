@@ -47,13 +47,17 @@ const config: webpack.Configuration = {
                 {
                   "regenerator": true
                 }
-              ]
+              ],
+              ['import', {
+                'libraryName': 'antd',
+                'style': true
+              }, 'antd']
             ]
           },
         },
       },
       {
-        test: /\.g\.less$/,
+        test: /\.m\.less$/,
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
@@ -61,7 +65,10 @@ const config: webpack.Configuration = {
           {
             loader: 'css-loader',
             options: {
-              modules: false,
+              modules: {
+                mode: 'local',
+                localIdentName: '[local]___[hash:base64:5]'
+              },
               importLoaders: 1,
               sourceMap: !isBuild
             }
@@ -72,8 +79,7 @@ const config: webpack.Configuration = {
         ]
       },
       {
-        test: /(?<!\.g)\.less$/,
-        exclude: paths.MATCH_NODE_MODULES,
+        test: /(?<!\.m)\.less$/,
         use: [
           {
             loader: MiniCssExtractPlugin.loader
@@ -81,10 +87,7 @@ const config: webpack.Configuration = {
           {
             loader: 'css-loader',
             options: {
-              modules: {
-                mode: 'local',
-                localIdentName: '[local]___[hash:base64:5]'
-              },
+              modules: false,
               importLoaders: 1,
               sourceMap: !isBuild
             }
@@ -102,7 +105,6 @@ const config: webpack.Configuration = {
       },
       {
         test: /\.css$/,
-        exclude: paths.MATCH_NODE_MODULES,
         use: [
           {
             loader: MiniCssExtractPlugin.loader,

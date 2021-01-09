@@ -28,6 +28,11 @@ const config: webpack.Configuration = {
   entry: {
     app: getPath('src/index.tsx')
   },
+  output: {
+    filename: '[name].[chunkhash].js',
+    path: paths.DIST,
+    chunkFilename: '[name].[chunkhash].js'
+  },
   module: {
     rules: [
       {
@@ -48,6 +53,7 @@ const config: webpack.Configuration = {
                   "regenerator": true
                 }
               ],
+              "@babel/plugin-syntax-dynamic-import",
               ['import', {
                 'libraryName': 'antd',
                 'style': true
@@ -61,6 +67,9 @@ const config: webpack.Configuration = {
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: ''
+            }
           },
           {
             loader: 'css-loader',
@@ -82,7 +91,10 @@ const config: webpack.Configuration = {
         test: /(?<!\.m)\.less$/,
         use: [
           {
-            loader: MiniCssExtractPlugin.loader
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: ''
+            }
           },
           {
             loader: 'css-loader',
@@ -191,7 +203,8 @@ const config: webpack.Configuration = {
     }),
     new HtmlWebpackPlugin({
       title: project.name,
-      template: getPath('src/index.html')
+      template: getPath('src/index.html'),
+      favicon: getPath('src/assets/images/favicon.ico')
     }),
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output

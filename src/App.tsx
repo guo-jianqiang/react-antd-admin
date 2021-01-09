@@ -1,5 +1,6 @@
 import React from "react"
 import { Button } from 'antd'
-const App = () => <Button type='primary'>hello world</Button>
+import Routes from "./route/route";
+const App = () => <Routes />
 
 export default App

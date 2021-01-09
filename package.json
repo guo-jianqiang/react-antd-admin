@@ -24,14 +24,18 @@
   "homepage": "https://github.com/guo-jianqiang/smile-blog#readme",
   "devDependencies": {
     "@babel/core": "^7.12.10",
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
     "@babel/plugin-transform-runtime": "^7.12.10",
     "@babel/preset-env": "^7.12.11",
     "@babel/preset-react": "^7.12.10",
     "@babel/preset-typescript": "^7.12.7",
     "@babel/runtime": "^7.12.5",
     "@types/fork-ts-checker-webpack-plugin": "^0.4.5",
+    "@types/nprogress": "^0.2.0",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
+    "@types/react-loadable": "^5.5.4",
+    "@types/react-router-dom": "^5.1.7",
     "@types/webpack": "^4.41.25",
     "@types/webpack-dev-server": "^3.11.1",
     "@typescript-eslint/eslint-plugin": "^4.12.0",
@@ -63,7 +67,11 @@
   },
   "dependencies": {
     "antd": "^4.10.0",
+    "history": "4.10.1",
+    "nprogress": "^0.2.0",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "react-loadable": "^5.5.0",
+    "react-router-dom": "^5.2.0"
   }
 }

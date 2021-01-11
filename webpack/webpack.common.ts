@@ -209,8 +209,8 @@ const config: webpack.Configuration = {
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // all options are optional
-      filename: '[name].[chunkhash].css',
-      chunkFilename: '[name].[chunkhash].css',
+      filename: `css/${'[name].[chunkhash].css'}`,
+      chunkFilename: `css/[name].[chunkhash].css`,
       ignoreOrder: false // Enable to remove warnings about conflicting order
     }),
     new CopyPlugin({

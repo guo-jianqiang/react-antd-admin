@@ -6,7 +6,26 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack serve --open --config webpack/webpack.dev.ts",
     "test": "cross-env NODE_ENV=test webpack serve --open --config webpack/webpack.dev.ts",
-    "build": "cross-env NODE_ENV=production webpack --config webpack/webpack.prod.ts"
+    "build": "cross-env NODE_ENV=production webpack --config webpack/webpack.prod.ts",
+    "lint:style": "stylelint \"src/**/**/*.less\" --syntax less",
+    "lint:style-fix": "stylelint \"src/**/**/*.less\" --syntax less --fix",
+    "lint-fix": "eslint src --fix --ext .ts,.tsx",
+    "lint": "eslint src --ext .ts,.tsx"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{ts,tsx}": [
+      "eslint --fix",
+      "git add"
+    ],
+    "src/**/**/*.less": [
+      "stylelint --config=.stylelintrc --fix",
+      "git add"
+    ]
   },
   "repository": {
     "type": "git",
@@ -47,14 +66,21 @@
     "copy-webpack-plugin": "^7.0.0",
     "cross-env": "^7.0.3",
     "css-loader": "^5.0.1",
+    "eslint": "^7.17.0",
+    "eslint-config-prettier": "^7.1.0",
+    "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "file-loader": "^6.2.0",
     "fork-ts-checker-webpack-plugin": "^6.0.8",
     "html-webpack-plugin": "^4.5.1",
+    "husky": "^4.3.7",
     "less-loader": "^7.2.1",
+    "lint-staged": "^10.5.3",
     "mini-css-extract-plugin": "^1.3.3",
+    "prettier": "^2.2.1",
     "progress-bar-webpack-plugin": "^2.1.0",
+    "stylelint": "^13.8.0",
     "ts-loader": "^8.0.13",
     "ts-node": "^9.1.1",
     "typescript": "^4.1.3",
@@ -67,7 +93,9 @@
   },
   "dependencies": {
     "antd": "^4.10.0",
+    "axios": "^0.21.1",
     "history": "4.10.1",
+    "js-base64": "^3.6.0",
     "nprogress": "^0.2.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",

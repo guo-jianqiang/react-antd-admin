@@ -1,11 +1,13 @@
 /** @format */
 
 import React from 'react'
+import {UserInterface} from '../lib/userData'
 
-interface userInterface {
-  name: string
-  auth: number
-  token: string
+interface UserContextInterface<T> {
+  userData: T | null
+  setUserData: (data: T) => void
 }
 
-export default React.createContext<userInterface | null>(null)
+const userContext = React.createContext<UserContextInterface<UserInterface> | null>(null)
+
+export default userContext

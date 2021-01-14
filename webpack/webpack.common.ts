@@ -14,6 +14,7 @@ try {
 } catch (e) {
   envConfig = {}
 }
+console.log(envConfig)
 // antd 主题
 let antdModifyVars
 try {
@@ -38,29 +39,31 @@ const config: webpack.Configuration = {
       {
         test: /\.(ts|js)x?$/,
         exclude: /node_modules/,
-        use: {
-          loader: "babel-loader",
-          options: {
-            presets: [
-              "@babel/preset-env",
-              "@babel/preset-react",
-              "@babel/preset-typescript",
-            ],
-            plugins: [
-              [
-                "@babel/plugin-transform-runtime",
-                {
-                  "regenerator": true
-                }
+        use: [
+          {
+            loader: "babel-loader",
+            options: {
+              presets: [
+                "@babel/preset-env",
+                "@babel/preset-react",
+                "@babel/preset-typescript",
               ],
-              "@babel/plugin-syntax-dynamic-import",
-              ['import', {
-                'libraryName': 'antd',
-                'style': true
-              }, 'antd']
-            ]
-          },
-        },
+              plugins: [
+                [
+                  "@babel/plugin-transform-runtime",
+                  {
+                    "regenerator": true
+                  }
+                ],
+                "@babel/plugin-syntax-dynamic-import",
+                ['import', {
+                  'libraryName': 'antd',
+                  'style': true
+                }, 'antd']
+              ]
+            },
+          }
+        ]
       },
       {
         test: /\.m\.less$/,
@@ -199,7 +202,8 @@ const config: webpack.Configuration = {
   },
   plugins: [
     new webpack.DefinePlugin({
-      "process.env.APP_CONFIG": JSON.stringify(envConfig)
+      "process.env.APP_CONFIG": JSON.stringify(envConfig),
+      "APP": JSON.stringify(envConfig)
     }),
     new HtmlWebpackPlugin({
       title: project.name,
@@ -209,8 +213,8 @@ const config: webpack.Configuration = {
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // all options are optional
-      filename: `css/${'[name].[chunkhash].css'}`,
-      chunkFilename: `css/[name].[chunkhash].css`,
+      filename: `${'[name].[chunkhash].css'}`,
+      chunkFilename: `[name].[chunkhash].css`,
       ignoreOrder: false // Enable to remove warnings about conflicting order
     }),
     new CopyPlugin({

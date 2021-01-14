@@ -23,7 +23,7 @@
       "git add"
     ],
     "src/**/**/*.less": [
-      "stylelint --config=.stylelintrc --fix",
+      "stylelint --config=.stylelintrc.js --fix",
       "git add"
     ]
   },
@@ -49,6 +49,7 @@
     "@babel/preset-react": "^7.12.10",
     "@babel/preset-typescript": "^7.12.7",
     "@babel/runtime": "^7.12.5",
+    "@types/classnames": "^2.2.11",
     "@types/fork-ts-checker-webpack-plugin": "^0.4.5",
     "@types/nprogress": "^0.2.0",
     "@types/react": "^17.0.0",
@@ -81,7 +82,7 @@
     "prettier": "^2.2.1",
     "progress-bar-webpack-plugin": "^2.1.0",
     "stylelint": "^13.8.0",
-    "ts-loader": "^8.0.13",
+    "ts-loader": "^8.0.14",
     "ts-node": "^9.1.1",
     "typescript": "^4.1.3",
     "typescript-plugin-css-modules": "^3.0.1",
@@ -94,6 +95,7 @@
   "dependencies": {
     "antd": "^4.10.0",
     "axios": "^0.21.1",
+    "classnames": "^2.2.6",
     "history": "4.10.1",
     "js-base64": "^3.6.0",
     "nprogress": "^0.2.0",

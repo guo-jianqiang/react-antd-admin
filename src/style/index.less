@@ -1,123 +1,120 @@
 :root {
-  --background-color: #eeeeee;
-  --primary-color: #1890ff;
-  --danger-color: #f5222d;
-  --primary-bg: #fff;
-  --primary-font-size: 16px;
-  --primary-font-color: rgba(0, 0, 0, 0.85);
-  --label-font-color: rgba(0,0,0,0.65);
-  --no-data-font-color: rgba(0, 0, 0, 0.45);
-  --primary-border: 1px solid #d8d8d8;
-  --primary-border-radius: 4px;
+	--background-color: #eeeeee;
+	--primary-color: #1890ff;
+	--danger-color: #f5222d;
+	--primary-bg: #fff;
+	--primary-font-size: 16px;
+	--primary-font-color: rgba(0, 0, 0, 0.85);
+	--label-font-color: rgba(0,0,0,0.65);
+	--no-data-font-color: rgba(0, 0, 0, 0.45);
+	--primary-border: 1px solid #d8d8d8;
+	--primary-border-radius: 4px;
 }
 
 // ------
-
 html, body {
-  margin: 0;
-  padding: 0;
-  min-width: 1280px;
-  height: 100%;
+	margin: 0;
+	padding: 0;
+	min-width: 1280px;
+	height: 100%;
 }
 
 #root {
-  height: 100%;
+	height: 100%;
 }
 
 /**
   存放常用的全局css方法，该文件的类，不使用 css modules 规则
  */
-
 .flex {
-  display: flex;
+	display: flex;
 }
 
 .flex-center-v {
-  display: flex;
-  align-items: center;
+	display: flex;
+	align-items: center;
 }
 
 .flex-center-h {
-  display: flex;
-  justify-content: center;
+	display: flex;
+	justify-content: center;
 }
 
 .flex-center-vh {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .flex-wrap {
-  flex-wrap: wrap;
+	flex-wrap: wrap;
 }
 
 .flex1 {
-  flex: 1;
+	flex: 1;
 }
 
 .flex-direction-column {
-  display: flex;
-  flex-direction: column;
+	display: flex;
+	flex-direction: column;
 }
 
 .margin-left-auto {
-  margin-left: auto;
+	margin-left: auto;
 }
 
 .flex-space-between {
-  display: flex;
-  justify-content: space-between;
+	display: flex;
+	justify-content: space-between;
 }
 
 .text-center {
-  text-align: center;
+	text-align: center;
 }
 
 /*文本超出部分用省略号显示*/
 .text-ellipsis-1 {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 
 /*2行文本超出部分用省略号显示*/
 .text-ellipsis-2 {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
 }
 
 /*3行文本超出部分用省略号显示*/
 .text-ellipsis-3 {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
 }
 
 a, a:active, a:hover, a:focus, a:focus-within {
-  text-decoration: none;
-  outline: 0;
+	text-decoration: none;
+	outline: 0;
 }
 
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-  background: #fff;
+	width: 6px;
+	height: 6px;
+	background: #fff;
 }
 
 ::-webkit-scrollbar-thumb {
-  //border-radius: 4px;
-  background: rgba(24,144,255,0.45);
+	//border-radius: 4px;
+	background: rgba(24,144,255,0.45);
 }
 
 ::-webkit-scrollbar-track {
-  //border-radius: 4px;
-  background: #f0f2f5;
+	//border-radius: 4px;
+	background: #f0f2f5;
 }
-

@@ -1,32 +1,53 @@
 /** @format */
 
 import React from 'react'
+import EmptyRoute from './EmptyRoute'
 import Login from '../view/login/Login'
-export interface Route {
+import {RouteComponentProps} from 'react-router'
+
+type ComponentType = React.ComponentType<RouteComponentProps<any>> & React.ComponentType<any> & {name: string}
+export interface RouteItem {
   path: string
-  name: string
+  exact: boolean
   meta: {
-    icon?: Function | string
+    name: string
+    icon: Function | string
     hidden?: boolean
   }
-  component: React.ReactNode
-  routes?: Array<Route>
+  component: ComponentType
+  routes?: Array<RouteItem>
 }
 
-const routeItems: Array<Route> = [
+const routeItems: Array<RouteItem> = [
   {
     path: '/test',
-    name: '测试',
-    meta: {},
-    component: Login,
+    exact: true,
+    meta: {
+      icon: 'iconyijibaogao',
+      name: '测',
+      hidden: true,
+    },
+    component: EmptyRoute,
     routes: [
       {
-        path: '/test',
-        name: '测试',
-        meta: {},
-        component: Login,
+        path: '/test/1',
+        exact: true,
+        meta: {
+          icon: 'iconuser',
+          name: '测试',
+        },
+        component: EmptyRoute,
       },
     ],
+  },
+  {
+    path: '/test/2',
+    exact: true,
+    meta: {
+      icon: 'iconuser',
+      name: '测试2',
+    },
+    component: EmptyRoute,
   },
 ]
 

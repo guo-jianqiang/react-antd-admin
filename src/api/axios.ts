@@ -9,9 +9,9 @@ import {getUserData, setUserData} from '../lib/userData'
 message.config({
   maxCount: 1,
 })
-
+const baseURl = (process.env.APP_CONFIG as any)?.SERVER_URL
 const instance: AxiosInstance = axios.create({
-  baseURL: process.env.SERVER_URL,
+  baseURL: baseURl
 })
 
 export const whiteList = ['/admin/login']
@@ -52,7 +52,7 @@ instance.interceptors.response.use(
     // if (response.code !== 0 && response.message) {
     //   message.warn(response.message)
     // }
-    if (response.config.url === process.env.SERVER_URL + 'admin/login') {
+    if (response.config.url === baseURl + 'admin/login') {
       const token = response.data?.token
       if (!token) {
         myHistory.push('/login')

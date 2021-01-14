@@ -1,6 +1,6 @@
 /** @format */
 
-import {Route} from '../route/routeItems'
+import {RouteItem} from '../route/routeItems'
 /**
  * @description 判空
  * @param obj
@@ -24,9 +24,10 @@ export const isEmpty = (obj: any) => {
  * @param handler
  * @param key
  */
-export const getTreePath = (nodes: Array<any>, handler: (node: Object) => {}, key = 'children') => {
+
+export function getTreePath<T>(nodes: Array<T>, handler: (node: T) => {}, key = 'children') {
   nodes = !Array.isArray(nodes) ? [nodes] : [...nodes]
-  let path: Array<any> = []
+  let path: Array<T> = []
   let getPaths = (tree: Array<any>): any => {
     for (let i = 0; i < tree.length; i++) {
       const item = tree[i]
@@ -50,7 +51,7 @@ export const getTreePath = (nodes: Array<any>, handler: (node: Object) => {}, ke
  * @param routes
  * @returns {*}
  */
-export const getFirstRoute = (routes: Array<Route>): Route | void => {
+export const getFirstRoute = (routes: Array<RouteItem>): RouteItem | any => {
   for (let i = 0; i < routes.length; i++) {
     const route = routes[i]
     if (!route.routes) {

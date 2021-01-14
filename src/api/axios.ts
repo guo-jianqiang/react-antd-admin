@@ -11,7 +11,7 @@ message.config({
 })
 const baseURl = (process.env.APP_CONFIG as any)?.SERVER_URL
 const instance: AxiosInstance = axios.create({
-  baseURL: baseURl
+  baseURL: baseURl,
 })
 
 export const whiteList = ['/admin/login']

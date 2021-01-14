@@ -3,7 +3,7 @@ import React, {FC, useEffect, useRef, useState} from 'react'
 import Header from './component/Header/Header'
 import Breadcrumb from './component/Breadcrumb/Breadcrumb'
 import {History} from 'history'
-import style from './style.m.less'
+import './style.less'
 import {RouteItem} from '../route/routeItems'
 import {UserInterface} from '../lib/userData'
 import Menu from './component/Menu/Menu'
@@ -24,30 +24,30 @@ const Layout: FC<LayoutProps> = props => {
     setCollapsed(!collapsed)
   }
   useEffect(() => {
-    layoutRef.current?.style.setProperty('--layout-menu-width', collapsed ? '56px' : '256px')
+    layoutRef.current?.style.setProperty('--layout-menu-width', collapsed ? '56px' : '220px')
   }, [collapsed])
   const collapseBtn = (
     <Tooltip title={collapsed ? '展开' : '收起'}>
       <Icon
         type={collapsed ? 'iconzhankai' : 'iconshouqi'}
-        className={style['layout-right-headerBtn']}
+        className={'layout-right-headerBtn'}
         onClick={handleClickCollapse}
       />
     </Tooltip>
   )
   return (
-    <div className={style.layout} ref={layoutRef}>
-      <aside className={style['layout-left']}>
+    <div className={'layout'} ref={layoutRef}>
+      <aside className={'layout-left'}>
         <Menu collapsed={collapsed} routeItems={routeItems} history={history} />
       </aside>
-      <header className={style['layout-right']}>
+      <header className={'layout-right'}>
         <Header
           history={history}
           userData={userData}
           collapseBtn={collapseBtn}
           breadcrumb={<Breadcrumb routes={routeItems} history={history} />}
         />
-        <div className={style['layout-right-content']}>{props.children}</div>
+        <div className={'layout-right-content'}>{props.children}</div>
       </header>
     </div>
   )

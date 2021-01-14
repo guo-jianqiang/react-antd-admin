@@ -93,7 +93,7 @@
     "webpackbar": "^5.0.0-3"
   },
   "dependencies": {
-    "antd": "^4.10.0",
+    "antd": "^4.10.2",
     "axios": "^0.21.1",
     "classnames": "^2.2.6",
     "history": "4.10.1",

@@ -146,7 +146,7 @@ const config: webpack.Configuration = {
             }
           }
         ],
-        exclude: paths.MATCH_NODE_MODULES,
+        // exclude: paths.MATCH_NODE_MODULES,
         include: paths.PATH_SRC
       },
       {

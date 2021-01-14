@@ -6,12 +6,11 @@
   height: 100%;
   &-left{
     flex-basis: var(--layout-menu-width);
+    overflow-x: hidden;
     transition: all 200ms ease-in-out;
     background: rgb(0, 21, 41);
-    :global{
-      .ant-menu-inline-collapsed{
-        width: var(--layout-menu-width);
-      }
+    .ant-menu-inline-collapsed{
+      width: var(--layout-menu-width);
     }
   }
   &-right{

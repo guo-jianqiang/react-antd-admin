@@ -201,6 +201,19 @@ const config: webpack.Configuration = {
             }
           }
         ]
+      },
+      {
+        test: /\.(md)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[contenthash].[ext]',
+              outputPath: 'md/',
+              esModule: false
+            }
+          }
+        ]
       }
     ],
   },

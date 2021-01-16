@@ -5,6 +5,7 @@ import EmptyRoute from './EmptyRoute'
 import Login from '../view/login/Login'
 import {RouteComponentProps} from 'react-router'
 import Table from '../view/table/Table'
+import ReadMe from "../view/readme/ReadMe";
 
 type ComponentType = React.ComponentType<RouteComponentProps<any>> & React.ComponentType<any> & {name: string}
 export interface RouteItem {
@@ -29,7 +30,7 @@ const routeItems: Array<RouteItem> = [
       icon: 'iconuser',
       name: '首页',
     },
-    component: Table,
+    component: ReadMe,
   },
   {
     path: '/test',

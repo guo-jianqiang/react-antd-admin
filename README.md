@@ -1,13 +1,15 @@
 # react-antd-admin
 基于react+ts+antd构建的管理后台脚手架模版
-## Layout
+## Layout(可单独拨离)
 
-1. Menu
+1. Menu 响应式菜单
 2. Header
 3. Tabs 路由标签
 4. Breadcrumb 面包屑
+5. ConfigurationDrawer 系统设置，目前仅完成主题色配置项
 
 ## 初始化
+
 ```shell
 yarn install
 or

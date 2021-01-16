@@ -1,6 +1,9 @@
-import React from "react";
+/** @format */
+
+import React from 'react'
 import ReactMarkdown from 'react-markdown'
-const readme = '# react-antd-admin\n' +
+const readme =
+  '# react-antd-admin\n' +
   '基于react+ts+antd构建的管理后台脚手架模版\n' +
   '## Layout(可单独拨离)\n' +
   '\n' +
@@ -11,6 +14,8 @@ const readme = '# react-antd-admin\n' +
   '5. ConfigurationDrawer 系统设置，目前仅完成主题色配置项\n' +
   '\n' +
   '## 线上地址[ http://g_guojq.gitee.io/react-antd-admin]( http://g_guojq.gitee.io/react-antd-admin)\n' +
+  '\n' +
+  '## git地址 [https://github.com/guo-jianqiang/react-antd-admin](https://github.com/guo-jianqiang/react-antd-admin)\n' +
   '\n' +
   '## 初始化\n' +
   '\n' +

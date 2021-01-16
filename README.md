@@ -10,7 +10,7 @@
 
 ## 线上地址[ http://g_guojq.gitee.io/react-antd-admin]( http://g_guojq.gitee.io/react-antd-admin)
 
-## git地址[]
+## git地址 [https://github.com/guo-jianqiang/react-antd-admin](https://github.com/guo-jianqiang/react-antd-admin)
 
 ## 初始化
 

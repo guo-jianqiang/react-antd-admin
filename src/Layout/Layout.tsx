@@ -56,7 +56,7 @@ const Layout: FC<LayoutProps> = props => {
           className={cx('layout-aside-logo', {
             'layout-aside-logo-collapsed': collapsed,
           })}>
-          <Link to={'/'}>
+          <Link to={'/home'}>
             <img src={logo} />
             {/*<logo />*/}
             {!collapsed && <h1 className={'text-ellipsis-1'}>{project.name}</h1>}

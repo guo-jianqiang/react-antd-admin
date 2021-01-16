@@ -1,4 +1,11 @@
-# blog-server
+# react-antd-admin
+基于react+ts+antd构建的管理后台脚手架模版
+## Layout
+
+1. Menu
+2. Header
+3. Tabs 路由标签
+4. Breadcrumb 面包屑
 
 ## 初始化
 ```shell

@@ -17,6 +17,16 @@ export const isEmpty = (obj: any) => {
   return isEmpty
 }
 
+// 广度优先
+export function treeForeach<T extends {routes?: Array<T>}>(tree: Array<T>, func: (node: T) => void) {
+  let node,
+    list = [...tree]
+  while ((node = list.shift())) {
+    func(node)
+    node.routes && list.push(...node.routes)
+  }
+}
+
 /**
  * @author gjq
  * @description 获取当前节点路径

@@ -9,6 +9,7 @@ import routeItems, {RouteItem} from './routeItems'
 import Layout from '../Layout/Layout'
 import {UserInterface} from '../lib/userData'
 import userContext from '../context/userContext'
+import {getFirstRoute, isEmpty} from '../lib/until'
 
 const Routes = () => {
   const [userData, setUserData] = useState<UserInterface | null>(null)
@@ -30,6 +31,7 @@ const Routes = () => {
     routeMap(routeItems)
     return routes
   }
+  const homePath = getFirstRoute(routeItems).path
   return (
     <userContext.Provider
       value={{
@@ -39,7 +41,7 @@ const Routes = () => {
       <Router history={history}>
         <Switch>
           <Route exact path="/">
-            <Redirect to={LOGIN_PATH} />
+            <Redirect to={isEmpty(userData) ? LOGIN_PATH : homePath} />
           </Route>
           <Route exact path={LOGIN_PATH} component={Login} />
           <Layout routeItems={routeItems} userData={userData} history={history}>

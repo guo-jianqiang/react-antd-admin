@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const ProgressBarPlugin = require('progress-bar-webpack-plugin')
+const AntDesignThemePlugin = require('antd-theme-webpack-plugin')
 const chalk = require('chalk')
 const getPath = paths.getPath
 const project = require(getPath('package.json'))
@@ -14,13 +15,20 @@ try {
 } catch (e) {
   envConfig = {}
 }
-console.log(envConfig)
 // antd 主题
 let antdModifyVars
 try {
-  antdModifyVars = require(getPath('src/style/antd'))
+  antdModifyVars = require(getPath('src/style/antd/antd'))
 } catch (e) {
   antdModifyVars = {}
+}
+
+// AntDesignThemePlugin 导出color.less的主题变量
+let themeVariables: Array<string>
+try {
+  themeVariables = Object.keys(require(getPath('src/style/antd/themeVars'))).map(key => key)
+} catch (e) {
+  themeVariables = []
 }
 
 const isBuild = process.env.NODE_ENV === 'production'
@@ -67,6 +75,7 @@ const config: webpack.Configuration = {
       },
       {
         test: /\.m\.less$/,
+        exclude: paths.MATCH_NODE_MODULES,
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
@@ -86,7 +95,12 @@ const config: webpack.Configuration = {
             }
           },
           {
-            loader: 'less-loader'
+            loader: 'less-loader',
+            options: {
+              lessOptions: {
+                javascriptEnabled: true
+              }
+            }
           }
         ]
       },
@@ -146,7 +160,7 @@ const config: webpack.Configuration = {
             }
           }
         ],
-        // exclude: paths.MATCH_NODE_MODULES,
+        exclude: paths.MATCH_NODE_MODULES,
         include: paths.PATH_SRC
       },
       {
@@ -209,6 +223,15 @@ const config: webpack.Configuration = {
       title: project.name,
       template: getPath('src/index.html'),
       favicon: getPath('src/assets/images/favicon.ico')
+    }),
+    new AntDesignThemePlugin({
+      // indexFileName: 'index.html',
+      antDir: getPath('node_modules/antd'),
+      stylesDir: getPath('src/style/antd/less'),
+      varFile: getPath('src/style/antd/less/_var.less'),
+      mainLessFile: getPath('src/style/antd/less/global.less'),
+      lessUrl: '/static/less.min.js',
+      themeVariables
     }),
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output

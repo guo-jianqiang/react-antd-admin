@@ -1,6 +1,6 @@
 /** @format */
 
-import React, {FC} from 'react'
+import React, {FC, useEffect, useState} from 'react'
 import {Menu as AntdMenu} from 'antd'
 import {MenuInfo} from 'rc-menu/lib/interface'
 import {RouteItem} from '../../../route/routeItems'
@@ -18,6 +18,10 @@ interface MenuProps {
 
 const Menu: FC<MenuProps> = props => {
   const {collapsed, routeItems, history} = props
+  const [selectedKeys, setSelectedKeys] = useState<Array<string>>([])
+  useEffect(() => {
+    setSelectedKeys([history.location.pathname])
+  }, [history.location.pathname])
   const renderIcon = (route: RouteItem) =>
     typeof route.meta.icon === 'function' ? route.meta.icon() : <Icon type={route.meta.icon} />
   const renderSubMenu = (route: RouteItem) => (
@@ -45,7 +49,7 @@ const Menu: FC<MenuProps> = props => {
     <AntdMenu
       mode="inline"
       theme="dark"
-      defaultSelectedKeys={[pathname]}
+      selectedKeys={selectedKeys}
       inlineCollapsed={collapsed}
       defaultOpenKeys={defaultOpenKeys}
       onClick={handleClickMenu}>

@@ -1,16 +1,74 @@
 .layout{
   --layout-menu-width: 220px;
   --layout-header-height: 60px;
-  --layout-tabs-height: 48px;
+  --layout-tabs-height: 34px;
   display: flex;
   height: 100%;
-  &-left{
-    flex-basis: var(--layout-menu-width);
-    overflow-x: hidden;
-    transition: all 200ms ease-in-out;
-    background: rgb(0, 21, 41);
+  &-mask{
+    visibility: hidden;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,.25);
+    z-index: 998;
+    &.layout-mask-collapsed{
+      visibility: hidden;
+      transition: visibility 0s linear 300ms, background-color 300ms;
+    }
+    @media screen and (max-width: 768px) {
+      visibility: visible;
+      transition: visibility 0s linear 0s, background-color 300ms;
+    }
+  }
+  &-aside{
+    width: var(--layout-menu-width);
+    //overflow-x: hidden;
+    transition: all .3s cubic-bezier(0.2, 0, 0, 1) 0s;
+    background: var(--menu-background);
+    @media screen and (max-width: 768px) {
+      position: fixed;
+      left: 0;
+      top: 0;
+      height: 100%;
+      z-index: 999;
+    }
+    &-logo{
+      position: relative;
+      display: flex;
+      align-items: center;
+      padding: 16px;
+      cursor: pointer;
+      transition: padding .3s cubic-bezier(.645,.045,.355,1);
+      a{
+        display: flex;
+        img{
+          height: 32px;
+        }
+        h1{
+          margin-left: 12px;
+          margin-bottom: 0;
+          font-size: 18px;
+          color: #fff;
+        }
+      }
+      &.layout-aside-logo-collapsed{
+        padding: 16px 12px;
+      }
+    }
+    &-menu{
+      height: calc(100% - 64px);
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
     .ant-menu-inline-collapsed{
       width: var(--layout-menu-width);
+    }
+    &.layout-aside-collapsed {
+      @media screen and (max-width: 768px) {
+        left: -56px;
+      }
     }
   }
   &-right{
@@ -20,10 +78,13 @@
       font-size: 18px;
       margin-right: 16px;
       cursor: pointer;
+      &:hover{
+        color: var(--primary-color);
+      }
     }
     &-content{
       padding: 16px;
-      height: calc(100% - var(--layout-header-height));
+      height: calc(100% - var(--layout-header-height) - var(--layout-tabs-height));
       overflow: auto;
     }
   }

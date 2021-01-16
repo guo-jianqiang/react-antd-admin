@@ -1,0 +1,38 @@
+.color{
+  position: relative;
+  padding: 4px;
+  background: rgb(255, 255, 255);
+  border-radius: 2px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 0px 1px;
+  display: inline-block;
+  cursor: pointer;
+  &-wrapper{
+    width: 80px;
+    height: 16px;
+    border-radius: 2px;
+  }
+  &-modal{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    right: 0;
+    right: 0;
+    z-index: 9999;
+    &-selector{
+      position: absolute;
+      //bottom: -16px;
+      //right: 0;
+      transform: translateY(24px);
+      opacity: 1;
+      transition: visibility 0s linear 0s, opacity 300ms;
+      visibility: visible;
+    }
+    &-hidden{
+      opacity: 0;
+      visibility: hidden;
+      transition: visibility 0s linear 300ms, opacity 300ms;
+    }
+  }
+}

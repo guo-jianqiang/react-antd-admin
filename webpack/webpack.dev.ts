@@ -8,11 +8,11 @@ export default webpackMerge(common, {
     devtool: 'inline-source-map',
     devServer: {
         contentBase: paths.DIST,
-        compress: true,
+        // compress: true,
         hot: true,
         port: 8000,
     },
     plugins: [
-        new webpack.HotModuleReplacementPlugin(),
+        // new webpack.HotModuleReplacementPlugin(),
     ]
 })

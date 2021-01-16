@@ -13,9 +13,9 @@ const readme =
   '4. Breadcrumb 面包屑\n' +
   '5. ConfigurationDrawer 系统设置，目前仅完成主题色配置项\n' +
   '\n' +
-  '## 线上地址[ http://g_guojq.gitee.io/react-antd-admin]( http://g_guojq.gitee.io/react-antd-admin)\n' +
+  '线上地址[ http://g_guojq.gitee.io/react-antd-admin]( http://g_guojq.gitee.io/react-antd-admin)\n' +
   '\n' +
-  '## git地址 [https://github.com/guo-jianqiang/react-antd-admin](https://github.com/guo-jianqiang/react-antd-admin)\n' +
+  'git地址 [https://github.com/guo-jianqiang/react-antd-admin](https://github.com/guo-jianqiang/react-antd-admin)\n' +
   '\n' +
   '## 初始化\n' +
   '\n' +

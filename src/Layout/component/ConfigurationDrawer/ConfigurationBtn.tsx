@@ -41,7 +41,10 @@ const ConfigurationBtn: FC<ConfigurationBtnProps> = ({visible, drawerWidth, hand
         const windowWidth = window.document.body.clientWidth
         const top = clientY
         let right = windowWidth - clientX - btnRef.current?.offsetWidth / 2
-        right = right > windowWidth / 2 ? windowWidth / 2 : right
+        if (right > windowWidth / 2) {
+          right = visible ? drawerWidth : 0
+          setIsMoving(false)
+        }
         setPosition({top, right})
       }
     }

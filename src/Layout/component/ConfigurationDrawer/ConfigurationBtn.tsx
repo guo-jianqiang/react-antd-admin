@@ -37,6 +37,7 @@ const ConfigurationBtn: FC<ConfigurationBtnProps> = ({visible, drawerWidth, hand
     setIsMoving(true)
   }
   const onPanStartMove = (e: any) => {
+    e.stopPropagation()
     const movingClient = (clientX: number, clientY: number) => {
       if (isMoving && btnRef.current) {
         const windowWidth = window.document.body.clientWidth
@@ -58,6 +59,7 @@ const ConfigurationBtn: FC<ConfigurationBtnProps> = ({visible, drawerWidth, hand
     }
   }
   const onPanStartup = (e: any) => {
+    e.stopPropagation()
     const setMouseDiff = (clientX: number, clientY: number) => {
       if (mouseMoveDiff.current) {
         mouseMoveDiff.current = {
@@ -76,6 +78,15 @@ const ConfigurationBtn: FC<ConfigurationBtnProps> = ({visible, drawerWidth, hand
     }
     setIsMoving(false)
   }
+  useEffect(() => {
+    document.body.addEventListener(
+      'touchmove',
+      function (e) {
+        e.preventDefault()
+      },
+      {passive: false},
+    )
+  }, [])
   useEffect(() => {
     if (!isMoving) {
       setPosition({...position, right: visible ? drawerWidth : 0})

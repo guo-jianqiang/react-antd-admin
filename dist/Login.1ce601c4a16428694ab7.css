@@ -6744,6 +6744,11 @@ textarea.ant-input {
   background: #fff;
   box-shadow: 0px 11px 14px -7px rgba(0, 0, 0, 0.2), 0px 23px 36px 3px rgba(0, 0, 0, 0.056), 0px 9px 44px 8px rgba(0, 0, 0, 0.048);
 }
+@media screen and (max-width: 768px) {
+  .login-wrapper___9Qa0W {
+    width: 80%;
+  }
+}
 .login-wrapper-img___39VjO {
   width: 50%;
   padding: 48px 32px;

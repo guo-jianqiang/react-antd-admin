@@ -90,7 +90,7 @@ const ConfigurationBtn: FC<ConfigurationBtnProps> = ({visible, drawerWidth, hand
       window.removeEventListener('mousemove', onPanStartMove)
       window.removeEventListener('mouseup', onPanStartup)
     }
-  })
+  }, [])
   const Btn = visible ? CloseOutlined : SettingOutlined
   return (
     <div

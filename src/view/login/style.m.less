@@ -7,11 +7,13 @@
 	background: url("../../assets/images/login/background.jpg") no-repeat;
 
 	&-wrapper{
-		width: 800px;
+		display: flex;
+		width: 50%;
 		background: #fff;
 		box-shadow: 0px 11px 14px -7px rgba(0,0,0,0.2), 0px 23px 36px 3px rgba(0,0,0,0.05600000000000001), 0px 9px 44px 8px rgba(0,0,0,0.048);
 
 		&-img{
+			width: 50%;
 			padding: 48px 32px;
 			display: flex;
 			justify-content: center;
@@ -21,9 +23,14 @@
 			img{
 				width: 100%;
 			}
+			@media screen and (max-width: 768px) {
+				display: none;
+			}
 		}
 
 		&-form{
+			flex: 1;
+			overflow: hidden;
 			padding: 32px;
 
 			&-title{

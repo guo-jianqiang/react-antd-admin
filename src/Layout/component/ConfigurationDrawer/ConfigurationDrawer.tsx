@@ -6,23 +6,25 @@ import cx from 'classnames'
 import {SettingOutlined, CloseOutlined} from '@ant-design/icons'
 import './style.less'
 import ThemeConfiguration from './ThemeConfiguration'
+import ConfigurationBtn from './ConfigurationBtn'
+import {SYSTEM_CONFIG_DRAWER_WIDTH} from '../../../constant'
 
 const ConfigurationDrawer: FC<any> = () => {
   const [visible, setVisible] = useState(false)
-  const handleClick = () => {
+  const handleClickCloseDrawer = () => {
     setVisible(!visible)
   }
-  const Btn = visible ? CloseOutlined : SettingOutlined
   return (
     <React.Fragment>
-      <div
-        className={cx('configuration-open', {
-          'configuration-close': !visible,
-        })}
-        onClick={handleClick}>
-        <Btn style={{fontSize: 24, color: '#fff'}} />
-      </div>
-      <Drawer placement="right" forceRender visible={visible} onClose={handleClick} closable={false} mask={false}>
+      <ConfigurationBtn drawerWidth={SYSTEM_CONFIG_DRAWER_WIDTH} visible={visible} handleClickBtn={setVisible} />
+      <Drawer
+        placement="right"
+        forceRender
+        visible={visible}
+        onClose={handleClickCloseDrawer}
+        closable={false}
+        mask={false}
+        width={SYSTEM_CONFIG_DRAWER_WIDTH}>
         <React.Fragment>
           <ThemeConfiguration />
         </React.Fragment>

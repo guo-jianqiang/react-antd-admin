@@ -15,7 +15,7 @@ const Breadcrumb: FC<BreadcrumbProps> = props => {
   const {routes, history} = props
   const routePath = getTreePath(routes, route => route.path === history.location.pathname, 'routes')
   const handleClick = (route: RouteItem) => () => {
-    if (route.component.name === 'EmptyRoute') return
+    if (route.routes && route.routes.length) return
     history.push(route.path)
   }
   return (

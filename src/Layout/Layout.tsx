@@ -16,8 +16,7 @@ import project from '../../package.json'
 import ConfigurationDrawer from './component/ConfigurationDrawer/ConfigurationDrawer'
 import Tabs from './component/Tabs/Tabs'
 import {configurationReducer} from './component/store/configurationReducer'
-import ConfigurationContext, {systemConfig} from './component/store/configurationContext'
-import {systemConfig as initialState} from './component/store/configurationContext'
+import ConfigurationContext, {getSystemConfig} from './component/store/configurationContext'
 import {actionCollapsed} from './component/store/configurationAction'
 
 interface LayoutProps {
@@ -27,7 +26,7 @@ interface LayoutProps {
 }
 const Layout: FC<LayoutProps> = props => {
   const {routeItems, history, userData} = props
-  const [configState, dispatch] = useReducer(configurationReducer, initialState)
+  const [configState, dispatch] = useReducer(configurationReducer, getSystemConfig())
   const layoutRef = useRef<HTMLDivElement | null>(null)
   const handleClickCollapse = () => {
     dispatch(actionCollapsed({...configState, collapsed: !configState.collapsed}))

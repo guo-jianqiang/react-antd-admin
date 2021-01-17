@@ -11,15 +11,15 @@ export interface ConfigurationContextInterface {
   dispatch: (action: ActionInterface) => void
 }
 const primaryColor = window.getComputedStyle(document.documentElement, null).getPropertyValue('--primary-color') || ''
-export const systemConfig: PayloadInterface = !isEmpty(getItem(SYStEM_CONFIG))
-  ? getItem(SYStEM_CONFIG)
-  : {
-      primaryColor,
-      collapsed: true,
-    }
-
+export const getSystemConfig = () =>
+  !isEmpty(getItem(SYStEM_CONFIG))
+    ? getItem(SYStEM_CONFIG)
+    : {
+        primaryColor,
+        collapsed: true,
+      }
 const ConfigurationContext = React.createContext<ConfigurationContextInterface>({
-  state: systemConfig,
+  state: getSystemConfig(),
   dispatch: action => {},
 })
 

@@ -8542,8 +8542,6 @@ textarea.ant-pagination-options-quick-jumper input {
 
 .configuration-open {
   position: fixed;
-  top: 50%;
-  right: 256px;
   margin-top: -21px;
   display: flex;
   justify-content: center;
@@ -8553,12 +8551,7 @@ textarea.ant-pagination-options-quick-jumper input {
   border-radius: 5px 0 0 5px;
   background: var(--primary-color);
   cursor: pointer;
-  transition: right 0.3s cubic-bezier(0.7, 0.3, 0.1, 1);
   z-index: 9999;
-}
-.configuration-open.configuration-close {
-  right: 0;
-  transition: right 0.3s cubic-bezier(0.7, 0.3, 0.1, 1);
 }
 .configuration-theme-title {
   margin-bottom: 12px;

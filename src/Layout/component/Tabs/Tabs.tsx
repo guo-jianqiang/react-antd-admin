@@ -17,10 +17,10 @@ const TAB_ACTIONS = {
   DEL_RIGHT: 'DEL_RIGHT',
   DEL_LEFT: 'DEL_LEFT',
   DEL_OTHER: 'DEL_OTHER',
-  DEL_ALL: 'DEL_ALL'
+  DEL_ALL: 'DEL_ALL',
 }
 interface TabsProps {
-  scrollDistance?: number;
+  scrollDistance?: number
   history: History
   routeItems: Array<RouteItem>
 }
@@ -65,7 +65,8 @@ const Tabs: FC<TabsProps> = props => {
       const deletedTabs = prevTabs.slice(index + 1)
       const fixedTabs = deletedTabs.filter(item => isTabFixed(item))
       const leftTabs = prevTabs.slice(0, index + 1)
-      if (routeRef.current) routeRef.current = route
+      const existCurrentRoute = leftTabs.find(item => item.path === history.location.pathname)
+      if (routeRef.current && !existCurrentRoute) routeRef.current = route
       tabAction.current = TAB_ACTIONS.DEL_RIGHT
       return [...fixedTabs, ...leftTabs]
     })
@@ -75,7 +76,8 @@ const Tabs: FC<TabsProps> = props => {
       const deletedTabs = prevTabs.slice(0, index)
       const fixedTabs = deletedTabs.filter(item => isTabFixed(item))
       const rightTabs = prevTabs.slice(index)
-      if (routeRef.current) routeRef.current = route
+      const existCurrentRoute = rightTabs.find(item => item.path === history.location.pathname)
+      if (routeRef.current && !existCurrentRoute) routeRef.current = route
       tabAction.current = TAB_ACTIONS.DEL_LEFT
       return [...fixedTabs, ...rightTabs]
     })
@@ -161,17 +163,17 @@ const Tabs: FC<TabsProps> = props => {
         {/*</div>*/}
         {tabs.map((tab, i) => (
           <Dropdown overlay={tabMenu(tab, i)} trigger={['contextMenu']} key={tab.path}>
-              <span
-                id={tab.path}
-                className={cx('tabs-wrapper-item', {
-                  'tabs-wrapper-active': tab.path === history.location.pathname,
-                })}
-                onClick={handleClickTab(tab)}>
-                <span className={'tabs-wrapper-item-name'}>{tab.meta.name}</span>
-                {!tab.meta.tabFixed && (
-                  <CloseCircleOutlined className="tabs-wrapper-item-close" onClick={handleClickCloseTab(tab)} />
-                )}
-              </span>
+            <span
+              id={tab.path}
+              className={cx('tabs-wrapper-item', {
+                'tabs-wrapper-active': tab.path === history.location.pathname,
+              })}
+              onClick={handleClickTab(tab)}>
+              <span className={'tabs-wrapper-item-name'}>{tab.meta.name}</span>
+              {!tab.meta.tabFixed && (
+                <CloseCircleOutlined className="tabs-wrapper-item-close" onClick={handleClickCloseTab(tab)} />
+              )}
+            </span>
           </Dropdown>
         ))}
       </div>

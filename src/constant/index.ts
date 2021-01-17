@@ -2,7 +2,9 @@
 
 export const LOGIN_PATH = '/login'
 
-export const ACCOUNT_INFO = 'account_info'
+export const ACCOUNT_INFO = '__account_info__'
+
+export const SYStEM_CONFIG = '__system_config__'
 
 export interface themeColorsInterface {
   id: number

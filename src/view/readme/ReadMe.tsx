@@ -2,7 +2,14 @@
 
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
-const readme =
+import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
+
+const renderers = {
+  code: (props: {language: string; value: string}) => {
+    return <SyntaxHighlighter language={props.language} children={props.value} />
+  },
+}
+const markdown =
   '# react-antd-admin\n' +
   '基于react+ts+antd构建的管理后台脚手架模版\n' +
   '## Layout(可单独拨离)\n' +
@@ -38,7 +45,7 @@ const readme =
   '**env**目录下的三个文件(development production test).json分别对于开发、测试、生产环境配置参数。\n'
 
 const ReadMe = () => {
-  return <ReactMarkdown source={readme} />
+  return <ReactMarkdown renderers={renderers} children={markdown} />
 }
 
 export default ReadMe

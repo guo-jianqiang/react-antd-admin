@@ -1,24 +1,30 @@
 /** @format */
 
-import React, {useState} from 'react'
-import {themeColors, themeColorsInterface} from '../../../constant'
+import React, {useContext, useEffect} from 'react'
+import {SYStEM_CONFIG, themeColors} from '../../../constant'
 import {CheckOutlined} from '@ant-design/icons'
 import './style.less'
-import {message, Tooltip} from 'antd'
+import {Tooltip} from 'antd'
 import ColorPopover from '../../../commpent/ColorPopconfirm/ColorPopover'
 import lessVarsUpdate from '../../../lib/less'
+import ConfigurationContext from '../store/configurationContext'
+import {actionPrimaryColor} from '../store/configurationAction'
+import {getItem} from '../../../lib/localStorage'
 
 const ThemeConfiguration = () => {
   const initialColor = window.getComputedStyle(document.documentElement, null).getPropertyValue('--primary-color')
-  const [color, setColor] = useState<themeColorsInterface | null>()
-  const handleClickColor = (color: themeColorsInterface) => () => {
-    setColor(color)
-    lessVarsUpdate({'@primary-color': color.color})
+  const configContext = useContext(ConfigurationContext)
+  const {state, dispatch} = configContext
+  const {primaryColor} = state
+  const handleClickColor = (color: string) => () => {
+    dispatch(actionPrimaryColor({...state, primaryColor: color}))
   }
-  const handleChangeColor = (color: string) => {
-    setColor(null)
-    lessVarsUpdate({'@primary-color': color})
+  const handleChangeCustomColor = (color: string) => {
+    dispatch(actionPrimaryColor({...state, primaryColor: color}))
   }
+  useEffect(() => {
+    lessVarsUpdate({'@primary-color': primaryColor})
+  }, [primaryColor])
   return (
     <div className={'configuration-theme'}>
       <h2 className={'configuration-theme-title'}>主题色</h2>
@@ -29,14 +35,14 @@ const ThemeConfiguration = () => {
               key={item.id}
               className={'configuration-theme-colors-item'}
               style={{background: item.color}}
-              onClick={handleClickColor(item)}>
-              {color?.id === item.id && <CheckOutlined />}
+              onClick={handleClickColor(item.color)}>
+              {primaryColor === item.color && <CheckOutlined />}
             </div>
           </Tooltip>
         ))}
       </div>
       <h2 className={'configuration-theme-title'}>自定义主题色</h2>
-      <ColorPopover color={color?.color || initialColor} onChange={handleChangeColor} />
+      <ColorPopover color={primaryColor || initialColor} onChange={handleChangeCustomColor} />
     </div>
   )
 }

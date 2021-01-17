@@ -1,13 +1,13 @@
 /** @format */
 
 import React, {FC, useState} from 'react'
-import {Button, Drawer} from 'antd'
+import {Drawer} from 'antd'
 import cx from 'classnames'
 import {SettingOutlined, CloseOutlined} from '@ant-design/icons'
 import './style.less'
 import ThemeConfiguration from './ThemeConfiguration'
 
-const ConfigurationDrawer: FC<any> = props => {
+const ConfigurationDrawer: FC<any> = () => {
   const [visible, setVisible] = useState(false)
   const handleClick = () => {
     setVisible(!visible)
@@ -22,7 +22,7 @@ const ConfigurationDrawer: FC<any> = props => {
         onClick={handleClick}>
         <Btn style={{fontSize: 24, color: '#fff'}} />
       </div>
-      <Drawer placement="right" visible={visible} onClose={handleClick} closable={false} mask={false} destroyOnClose>
+      <Drawer placement="right" forceRender visible={visible} onClose={handleClick} closable={false} mask={false}>
         <React.Fragment>
           <ThemeConfiguration />
         </React.Fragment>

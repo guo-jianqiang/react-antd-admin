@@ -79,15 +79,6 @@ const ConfigurationBtn: FC<ConfigurationBtnProps> = ({visible, drawerWidth, hand
     setIsMoving(false)
   }
   useEffect(() => {
-    document.body.addEventListener(
-      'touchmove',
-      function (e) {
-        e.preventDefault()
-      },
-      {passive: false},
-    )
-  }, [])
-  useEffect(() => {
     if (!isMoving) {
       setPosition({...position, right: visible ? drawerWidth : 0})
     }

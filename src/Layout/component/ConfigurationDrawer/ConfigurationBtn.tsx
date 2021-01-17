@@ -26,6 +26,7 @@ const ConfigurationBtn: FC<ConfigurationBtnProps> = ({visible, drawerWidth, hand
   }
   const onPanStartDown = (e: any) => {
     e.stopPropagation()
+    window.document.body.style.overflow = 'hidden'
     if (e.type === 'mousedown') {
       mouseMoveDiff.current = {top: e.clientY, right: e.clientX}
     }
@@ -65,6 +66,7 @@ const ConfigurationBtn: FC<ConfigurationBtnProps> = ({visible, drawerWidth, hand
         }
       }
     }
+    window.document.body.style.overflow = 'auto'
     if (e.type === 'mouseup') {
       setMouseDiff(e.clientX, e.clientY)
     }

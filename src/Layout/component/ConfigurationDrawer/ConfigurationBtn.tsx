@@ -24,26 +24,50 @@ const ConfigurationBtn: FC<ConfigurationBtnProps> = ({visible, drawerWidth, hand
     e.stopPropagation()
     if (mouseMoveDiff.current?.right === 0 && mouseMoveDiff.current?.top === 0) handleClickBtn(!visible)
   }
-  const onMouseDown = (e: React.MouseEvent) => {
+  const onPanStartDown = (e: any) => {
     e.stopPropagation()
-    mouseMoveDiff.current = {top: e.clientY, right: e.clientX}
+    if (e.type === 'mousedown') {
+      mouseMoveDiff.current = {top: e.clientY, right: e.clientX}
+    }
+    if (e.type === 'touchstart') {
+      const [changedTouch] = e.changedTouches
+      mouseMoveDiff.current = {top: changedTouch.clientY, right: changedTouch.clientX}
+    }
     setIsMoving(true)
   }
-  const onMouseMove = (e: MouseEvent) => {
-    if (isMoving && btnRef.current) {
-      const windowWidth = window.document.body.clientWidth
-      const top = e.clientY
-      let right = windowWidth - e.clientX - btnRef.current?.offsetWidth / 2
-      right = right > windowWidth / 2 ? windowWidth / 2 : right
-      setPosition({top, right})
+  const onPanStartMove = (e: any) => {
+    const movingClient = (clientX: number, clientY: number) => {
+      if (isMoving && btnRef.current) {
+        const windowWidth = window.document.body.clientWidth
+        const top = clientY
+        let right = windowWidth - clientX - btnRef.current?.offsetWidth / 2
+        right = right > windowWidth / 2 ? windowWidth / 2 : right
+        setPosition({top, right})
+      }
+    }
+    if (e.type === 'mousemove') {
+      movingClient(e.clientX, e.clientY)
+    }
+    if (e.type === 'touchmove') {
+      const [changedTouch] = e.changedTouches
+      movingClient(changedTouch.clientX, changedTouch.clientY)
     }
   }
-  const onMouseup = (e: MouseEvent) => {
-    if (mouseMoveDiff.current) {
-      mouseMoveDiff.current = {
-        top: e.clientY - (mouseMoveDiff.current?.top as number),
-        right: e.clientX - (mouseMoveDiff.current?.right as number),
+  const onPanStartup = (e: any) => {
+    const setMouseDiff = (clientX: number, clientY: number) => {
+      if (mouseMoveDiff.current) {
+        mouseMoveDiff.current = {
+          top: clientY - (mouseMoveDiff.current?.top as number),
+          right: clientX - (mouseMoveDiff.current?.right as number),
+        }
       }
+    }
+    if (e.type === 'mouseup') {
+      setMouseDiff(e.clientX, e.clientY)
+    }
+    if (e.type === 'touchend') {
+      const [changedTouch] = e.changedTouches
+      setMouseDiff(changedTouch.clientX, changedTouch.clientY)
     }
     setIsMoving(false)
   }
@@ -53,11 +77,11 @@ const ConfigurationBtn: FC<ConfigurationBtnProps> = ({visible, drawerWidth, hand
     }
   }, [isMoving, visible])
   useEffect(() => {
-    window.addEventListener('mousemove', onMouseMove)
-    window.addEventListener('mouseup', onMouseup)
+    window.addEventListener('mousemove', onPanStartMove)
+    window.addEventListener('mouseup', onPanStartup)
     return () => {
-      window.removeEventListener('mousemove', onMouseMove)
-      window.removeEventListener('mouseup', onMouseup)
+      window.removeEventListener('mousemove', onPanStartMove)
+      window.removeEventListener('mouseup', onPanStartup)
     }
   })
   const Btn = visible ? CloseOutlined : SettingOutlined
@@ -72,7 +96,10 @@ const ConfigurationBtn: FC<ConfigurationBtnProps> = ({visible, drawerWidth, hand
         transition: isMoving ? 'none' : 'all 0.3s cubic-bezier(0.7, 0.3, 0.1, 1)',
       }}
       onClick={handleClick}
-      onMouseDown={onMouseDown}>
+      onMouseDown={onPanStartDown}
+      onTouchStart={onPanStartDown}
+      onTouchMove={onPanStartMove}
+      onTouchEnd={onPanStartup}>
       <Btn style={{fontSize: 24, color: '#fff'}} />
     </div>
   )

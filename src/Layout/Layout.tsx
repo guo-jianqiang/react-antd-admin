@@ -33,7 +33,7 @@ const Layout: FC<LayoutProps> = props => {
     dispatch(actionCollapsed({...configState, collapsed: !configState.collapsed}))
   }
   const handleClickMask = () => {
-    dispatch(actionCollapsed({...configState, collapsed: false}))
+    dispatch(actionCollapsed({...configState, collapsed: true}))
   }
   const {collapsed} = configState
   useEffect(() => {

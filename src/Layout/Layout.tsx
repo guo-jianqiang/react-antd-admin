@@ -10,7 +10,7 @@ import {RouteItem} from '../route/routeItems'
 import {UserInterface} from '../lib/userData'
 import Menu from './component/Menu/Menu'
 import Icon from '../commpent/icon/Icon'
-import {Tooltip} from 'antd'
+import {Tooltip, BackTop} from 'antd'
 import logo from '../assets/images/我的.svg'
 import project from '../../package.json'
 import ConfigurationDrawer from './component/ConfigurationDrawer/ConfigurationDrawer'
@@ -27,6 +27,7 @@ interface LayoutProps {
 const Layout: FC<LayoutProps> = props => {
   const {routeItems, history, userData} = props
   const [configState, dispatch] = useReducer(configurationReducer, getSystemConfig())
+  const contentRef = useRef<HTMLDivElement | null>(null)
   const layoutRef = useRef<HTMLDivElement | null>(null)
   const handleClickCollapse = () => {
     dispatch(actionCollapsed({...configState, collapsed: !configState.collapsed}))
@@ -87,7 +88,14 @@ const Layout: FC<LayoutProps> = props => {
             breadcrumb={<Breadcrumb routes={routeItems} history={history} />}
           />
           <Tabs history={history} routeItems={routeItems} />
-          <div className={'layout-right-content'}>{props.children}</div>
+          <div className={'layout-right-content'} ref={contentRef}>
+            {props.children}
+            <BackTop
+              style={{right: 32, bottom: 32}}
+              target={() => contentRef.current || window}
+              visibilityHeight={200}
+            />
+          </div>
         </div>
       </div>
     </ConfigurationContext.Provider>

@@ -1,6 +1,6 @@
 /** @format */
 
-import {CHANGE_PRIMARY_COLOR, COLLAPSE_MENU} from './actions'
+import {CHANGE_PRIMARY_COLOR, COLLAPSE_MENU} from './actionTypes'
 import {PayloadInterface} from './configurationReducer'
 
 export const actionPrimaryColor = (payload: PayloadInterface, type: string = CHANGE_PRIMARY_COLOR) => {

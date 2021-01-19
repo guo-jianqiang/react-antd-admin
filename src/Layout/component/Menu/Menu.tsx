@@ -45,6 +45,7 @@ const Menu: FC<MenuProps> = props => {
   const defaultOpenKeys = getTreePath(routeItems, route => route.path === pathname, 'routes').map(
     (route: RouteItem) => route.path,
   )
+  console.log(collapsed)
   return (
     <AntdMenu
       mode="inline"

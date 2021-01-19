@@ -1,7 +1,6 @@
 /** @format */
 
-import React, {FC, useEffect, useRef, useState} from 'react'
-import cx from 'classnames'
+import React, {FC, useCallback, useEffect, useRef, useState} from 'react'
 import {CloseOutlined, SettingOutlined} from '@ant-design/icons'
 
 interface ConfigurationBtnProps {
@@ -25,7 +24,7 @@ const ConfigurationBtn: FC<ConfigurationBtnProps> = ({visible, drawerWidth, hand
     if (mouseMoveDiff.current?.right === 0 && mouseMoveDiff.current?.top === 0) handleClickBtn(!visible)
   }
   const onPanStartDown = (e: any) => {
-    e.stopPropagation()
+    // e.stopPropagation()
     window.document.body.style.overflow = 'hidden'
     if (e.type === 'mousedown') {
       mouseMoveDiff.current = {top: e.clientY, right: e.clientX}
@@ -78,24 +77,27 @@ const ConfigurationBtn: FC<ConfigurationBtnProps> = ({visible, drawerWidth, hand
     }
     setIsMoving(false)
   }
+  const onPanStartMoveCallback = useCallback(onPanStartMove, [])
+  const onPanStartupCallback = useCallback(onPanStartup, [])
+  useEffect(() => {
+    // console.log(position)
+    window.addEventListener('mousemove', onPanStartMoveCallback)
+    window.addEventListener('mouseup', onPanStartupCallback)
+    return () => {
+      window.removeEventListener('mousemove', onPanStartMoveCallback)
+      window.removeEventListener('mouseup', onPanStartupCallback)
+    }
+  }, [position, isMoving])
   useEffect(() => {
     if (!isMoving) {
       setPosition({...position, right: visible ? drawerWidth : 0})
     }
   }, [isMoving, visible])
-  useEffect(() => {
-    window.addEventListener('mousemove', onPanStartMove)
-    window.addEventListener('mouseup', onPanStartup)
-    return () => {
-      window.removeEventListener('mousemove', onPanStartMove)
-      window.removeEventListener('mouseup', onPanStartup)
-    }
-  }, [])
   const Btn = visible ? CloseOutlined : SettingOutlined
   return (
     <div
       ref={btnRef}
-      className={cx('configuration-open')}
+      className={'configuration-open'}
       style={{
         top: position.top,
         right: position.right,

@@ -238,7 +238,7 @@ const config: webpack.Configuration = {
       favicon: getPath('src/assets/images/favicon.ico')
     }),
     new AntDesignThemePlugin({
-      // indexFileName: 'index.html',
+      indexFileName: false,
       antDir: getPath('node_modules/antd'),
       stylesDir: getPath('src/style/antd/less'),
       varFile: getPath('src/style/antd/less/_var.less'),

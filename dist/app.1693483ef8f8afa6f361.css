@@ -5280,7 +5280,6 @@ a.ant-btn-sm {
 }
 
 .layout {
-  --layout-menu-width: 220px;
   --layout-header-height: 60px;
   --layout-tabs-height: 34px;
   display: flex;

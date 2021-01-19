@@ -48,13 +48,14 @@ const Layout: FC<LayoutProps> = props => {
       />
     </Tooltip>
   )
+  const layoutStyle = {'--layout-menu-width': collapsed ? '56px' : '220px'} as React.CSSProperties
   return (
     <ConfigurationContext.Provider
       value={{
         state: configState,
         dispatch,
       }}>
-      <div className={'layout'} ref={layoutRef}>
+      <div className={'layout'} ref={layoutRef} style={layoutStyle}>
         <div
           className={cx('layout-mask', {
             'layout-mask-collapsed': collapsed,

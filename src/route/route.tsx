@@ -43,7 +43,7 @@ const Routes = () => {
       <Router history={history}>
         <Switch>
           <Route exact path="/">
-            <Redirect to={isEmpty(userData) ? LOGIN_PATH : homePath} />
+            <Redirect to={isEmpty(getItem(ACCOUNT_INFO)) ? LOGIN_PATH : homePath} />
           </Route>
           <Route exact path={LOGIN_PATH} component={Login} />
           <Layout routeItems={routeItems} userData={userData} history={history}>

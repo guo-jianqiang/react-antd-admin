@@ -2,12 +2,10 @@
 
 import React from 'react'
 import EmptyRoute from './EmptyRoute'
-import Login from '../view/login/Login'
-import {RouteComponentProps} from 'react-router'
-import Table from '../view/table/Table'
-import ReadMe from '../view/readme/ReadMe'
+import Table from '../view/table/index'
+import ReadMe from '../view/readme/index'
 
-type ComponentType = React.ComponentType<RouteComponentProps<any>> & React.ComponentType<any> & {name: string}
+type ComponentType = React.ComponentType<any> & {name: string}
 export interface RouteItem {
   path: string
   exact: boolean

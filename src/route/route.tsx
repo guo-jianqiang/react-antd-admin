@@ -2,7 +2,7 @@
 
 import React, {useEffect, useState} from 'react'
 import {Router, Switch, Redirect, Route} from 'react-router-dom'
-import {LOGIN_PATH} from '../constant'
+import {ACCOUNT_INFO, LOGIN_PATH} from '../constant'
 import history from './history'
 import Login from '../view/login'
 import routeItems, {RouteItem} from './routeItems'
@@ -10,12 +10,14 @@ import Layout from '../Layout/Layout'
 import {UserInterface} from '../lib/userData'
 import userContext from '../context/userContext'
 import {getFirstRoute, isEmpty} from '../lib/until'
+import {getItem} from '../lib/localStorage'
 
 const Routes = () => {
   const [userData, setUserData] = useState<UserInterface | null>(null)
   useEffect(() => {
     if (history.location.pathname !== LOGIN_PATH) {
-      setUserData({username: '测试', token: '123'})
+      if (isEmpty(getItem(ACCOUNT_INFO))) history.push(LOGIN_PATH)
+      setUserData(getItem(ACCOUNT_INFO))
     }
   }, [])
   const renderRoutes = () => {

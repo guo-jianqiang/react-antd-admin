@@ -2,19 +2,18 @@
 
 import {auth} from '../api/login'
 import {getItem, removeItem, setItem} from './localStorage'
-
-export const CEC_USER_DATA = 'cec_vison_data'
+import {ACCOUNT_INFO} from '../constant'
 
 export interface UserInterface {
   username?: string
   token: string
 }
 
-export const getUserData = () => getItem(CEC_USER_DATA)
+export const getUserData = () => getItem(ACCOUNT_INFO)
 
-export const setUserData = (data: UserInterface) => setItem(CEC_USER_DATA, data)
+export const setUserData = (data: UserInterface) => setItem(ACCOUNT_INFO, data)
 
-export const removeUserData = () => removeItem(CEC_USER_DATA)
+export const removeUserData = () => removeItem(ACCOUNT_INFO)
 
 export const getAuthInfo = async () => {
   const res = (await auth()).data

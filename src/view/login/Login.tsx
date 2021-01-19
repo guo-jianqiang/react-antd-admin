@@ -31,7 +31,7 @@ const Login: FC<LoginProps> = (props: {}) => {
     console.log('Success:', values)
     const {username, password} = values
     if (values.remember) {
-      setItem(ACCOUNT_INFO, {username, password})
+      setItem(ACCOUNT_INFO, {username})
     } else {
       removeItem(ACCOUNT_INFO)
     }

@@ -1,16 +1,13 @@
 /** @format */
 
-import React, {FC, useState} from 'react'
-import {CEC_USER_DATA, UserInterface} from '../../../lib/userData'
-import {Menu, Dropdown, Avatar, Tooltip, Input, message} from 'antd'
+import React, {FC} from 'react'
+import {removeUserData, UserInterface} from '../../../lib/userData'
+import {Menu, Dropdown, Avatar, Tooltip} from 'antd'
 import cx from 'classnames'
 import {History} from 'history'
-import ColorPopover from '../../../commpent/ColorPopconfirm/ColorPopover'
 import './style.less'
 import {LOGIN_PATH} from '../../../constant'
-import {removeItem} from '../../../lib/localStorage'
 import Icon from '../../../commpent/icon/Icon'
-// const themeVars = require('../../../style/antd/themeVariables'
 
 interface HeaderProps {
   userData: UserInterface | null
@@ -23,7 +20,7 @@ const Header: FC<HeaderProps> = props => {
   const {history} = props
   const handleClickDrop = () => {
     history.push(LOGIN_PATH)
-    removeItem(CEC_USER_DATA)
+    removeUserData()
   }
   const menu = (
     <Menu>

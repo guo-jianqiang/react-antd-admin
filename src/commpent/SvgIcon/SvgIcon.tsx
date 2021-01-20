@@ -1,5 +1,5 @@
 import React, {FC, useEffect, useRef, useState} from "react"
-import './style.scss'
+import './style.less'
 
 const httpReg = /^https?/
 

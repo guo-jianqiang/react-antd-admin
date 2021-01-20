@@ -3,7 +3,7 @@
 import React, {useEffect, useState} from 'react'
 import {Popover, Input, Row, Col, Tooltip} from 'antd'
 import {InputProps} from 'antd/lib/input'
-import './style.scss'
+import './style.less'
 
 const {Search} = Input
 

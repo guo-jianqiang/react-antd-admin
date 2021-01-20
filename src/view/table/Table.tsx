@@ -3,6 +3,9 @@
 import React from 'react'
 import {Table as AntdTable, Space, Tag} from 'antd'
 import {ColumnType} from 'antd/lib/table/interface'
+import CecIcon from '../../commpent/SvgIcon/SvgIcon'
+
+CecIcon.setDefaultUrl('http://localhost:8089/icon/')
 
 type recordProps = {
   name: string
@@ -84,7 +87,11 @@ const Table = () => {
       tags: ['cool', 'teacher'],
     },
   ]
-  return <AntdTable columns={columns} dataSource={data} />
+  return (
+    <React.Fragment>
+      <AntdTable columns={columns} dataSource={data} />
+    </React.Fragment>
+  )
 }
 
 export default Table

@@ -9,26 +9,31 @@ import {getItem, setItem} from '../../../lib/localStorage'
 import cx from 'classnames'
 import {CloseCircleOutlined, LeftOutlined, RightOutlined} from '@ant-design/icons'
 import './style.less'
+import {MenuInfo} from 'rc-menu/lib/interface'
+import {aliveControlInterface} from "../../Layout";
 
 const LAYOUT_TAB = '__layout_tab__'
 const TAB_ACTIONS = {
-  ADD: 'ADD',
-  DEL: 'DEL',
-  DEL_RIGHT: 'DEL_RIGHT',
-  DEL_LEFT: 'DEL_LEFT',
-  DEL_OTHER: 'DEL_OTHER',
-  DEL_ALL: 'DEL_ALL',
+  REFRESH: 'REFRESH', // 刷新
+  ADD: 'ADD', // 添加
+  DEL: 'DEL', //删除
+  DEL_RIGHT: 'DEL_RIGHT', //删除右边
+  DEL_LEFT: 'DEL_LEFT', // 删除左边
+  DEL_OTHER: 'DEL_OTHER', // 删除其他
+  DEL_ALL: 'DEL_ALL', //删除所有
 }
-interface TabsProps {
-  scrollDistance?: number
-  history: History
-  routeItems: Array<RouteItem>
+interface TabsProps<T> {
+  scrollDistance?: number;
+  history: History;
+  routeItems: Array<T>;
+  aliveControl: aliveControlInterface;
 }
 
-const Tabs: FC<TabsProps> = props => {
+const Tabs: FC<TabsProps<RouteItem>> = props => {
   const localTabs = !isEmpty(getItem(LAYOUT_TAB)) ? getItem(LAYOUT_TAB) : []
-  const {history, routeItems, scrollDistance = 200} = props
+  const {history, routeItems, scrollDistance = 200, aliveControl} = props
   const [tabs, setTabs] = useState<Array<RouteItem>>(localTabs)
+  const prevTabs = useRef<Array<RouteItem>>(tabs)
   const routeRef = useRef<RouteItem | null>(null)
   const tabAction = useRef<string>(TAB_ACTIONS.ADD)
   useEffect(() => {
@@ -42,8 +47,19 @@ const Tabs: FC<TabsProps> = props => {
   useEffect(() => {
     setItem(LAYOUT_TAB, tabs)
     scrollIntoTab()
-    if (routeRef.current && tabAction.current !== TAB_ACTIONS.ADD) history.push(routeRef.current?.path)
+    if (routeRef.current && tabAction.current !== TAB_ACTIONS.ADD) {
+      history.push(routeRef.current?.path)
+      prevTabs.current.forEach(prevTab => {
+        if (!tabs.find(tab => tab.path === prevTab.path)) {
+          aliveControl.dropByCacheKey(prevTab.path)
+        }
+      })
+    }
+    prevTabs.current = [...tabs]
   }, [tabs])
+  const handleClickRefreshRoute = (tab: RouteItem) => () => {
+    aliveControl.refreshByCacheKey(tab.path)
+  }
   const scrollIntoTab = () => {
     const pathname = history.location.pathname
     const tabNode: HTMLElement | null = window.document.getElementById(pathname)
@@ -60,7 +76,7 @@ const Tabs: FC<TabsProps> = props => {
       return [...prevTabs]
     })
   }
-  const handleClickDelRightTabs = (route: RouteItem, index: number) => (e: any) => {
+  const handleClickDelRightTabs = (route: RouteItem, index: number) => () => {
     setTabs((prevTabs: Array<RouteItem> = []) => {
       const deletedTabs = prevTabs.slice(index + 1)
       const fixedTabs = deletedTabs.filter(item => isTabFixed(item))
@@ -71,7 +87,7 @@ const Tabs: FC<TabsProps> = props => {
       return [...fixedTabs, ...leftTabs]
     })
   }
-  const handleClickDelLeftTabs = (route: RouteItem, index: number) => (e: any) => {
+  const handleClickDelLeftTabs = (route: RouteItem, index: number) => () => {
     setTabs((prevTabs: Array<RouteItem> = []) => {
       const deletedTabs = prevTabs.slice(0, index)
       const fixedTabs = deletedTabs.filter(item => isTabFixed(item))
@@ -82,15 +98,15 @@ const Tabs: FC<TabsProps> = props => {
       return [...fixedTabs, ...rightTabs]
     })
   }
-  const handleClickDelOtherTabs = (route: RouteItem) => (e: any) =>
+  const handleClickDelOtherTabs = (route: RouteItem) => () =>
     setTabs((prevTabs: Array<RouteItem> = []) => {
       const fixedTabs = prevTabs.filter(item => isTabFixed(item) && item.path !== route.path)
       if (routeRef.current) routeRef.current = route
       tabAction.current = TAB_ACTIONS.DEL_OTHER
       return [...fixedTabs, route]
     })
-  const handleClickCloseTab = (tab: RouteItem) => (e: any) => {
-    e.target && e.stopPropagation()
+  const handleClickCloseTab = (tab: RouteItem) => (e: any | null) => {
+    e && e.target && e.stopPropagation()
     setTabs((prevTabs: Array<RouteItem> = []) => {
       const index = prevTabs.findIndex(item => item.path === tab.path)
       prevTabs.splice(index, 1)
@@ -101,7 +117,7 @@ const Tabs: FC<TabsProps> = props => {
       return [...prevTabs]
     })
   }
-  const handleClickDelAllTabs = (e: any) => {
+  const handleClickDelAllTabs = () => {
     setTabs((prevTabs: Array<RouteItem> = []) => {
       const fixedTabs = prevTabs.filter(item => item.meta.tabFixed)
       if (fixedTabs.length) {
@@ -131,23 +147,41 @@ const Tabs: FC<TabsProps> = props => {
     }
   }
 
+  const HandleClickTabMenu = (tab: RouteItem, i: number) => (e: MenuInfo) => {
+    switch (e.key) {
+      case TAB_ACTIONS.REFRESH:
+        handleClickRefreshRoute(tab)()
+        break
+      case TAB_ACTIONS.DEL:
+        handleClickCloseTab(tab)(null)
+        break
+      case TAB_ACTIONS.DEL_OTHER:
+        handleClickDelOtherTabs(tab)()
+        break
+      case TAB_ACTIONS.DEL_RIGHT:
+        handleClickDelRightTabs(tab, i)()
+        break
+      case TAB_ACTIONS.DEL_LEFT:
+        handleClickDelLeftTabs(tab, i)()
+        break
+      case TAB_ACTIONS.DEL_ALL:
+        handleClickDelAllTabs()
+        break
+    }
+  }
+
   const tabMenu = (tab: RouteItem, i: number) => (
-    <Menu>
-      <Menu.Item key="1" disabled={tab.meta.tabFixed} onClick={handleClickCloseTab(tab)}>
+    <Menu onClick={HandleClickTabMenu(tab, i)}>
+      <Menu.Item key={TAB_ACTIONS.REFRESH} disabled={!tab.meta.isCache}>
+        刷新
+      </Menu.Item>
+      <Menu.Item key={TAB_ACTIONS.DEL} disabled={tab.meta.tabFixed}>
         关闭
       </Menu.Item>
-      <Menu.Item key="2" onClick={handleClickDelOtherTabs(tab)}>
-        关闭其他
-      </Menu.Item>
-      <Menu.Item key="3" onClick={handleClickDelRightTabs(tab, i)}>
-        关闭右边
-      </Menu.Item>
-      <Menu.Item key="4" onClick={handleClickDelLeftTabs(tab, i)}>
-        关闭左边
-      </Menu.Item>
-      <Menu.Item key="5" onClick={handleClickDelAllTabs}>
-        关闭所有
-      </Menu.Item>
+      <Menu.Item key={TAB_ACTIONS.DEL_OTHER}>关闭其他</Menu.Item>
+      <Menu.Item key={TAB_ACTIONS.DEL_RIGHT}>关闭右边</Menu.Item>
+      <Menu.Item key={TAB_ACTIONS.DEL_LEFT}>关闭左边</Menu.Item>
+      <Menu.Item key={TAB_ACTIONS.DEL_ALL}>关闭所有</Menu.Item>
     </Menu>
   )
   return (
@@ -158,9 +192,6 @@ const Tabs: FC<TabsProps> = props => {
         </Tooltip>
       </div>
       <div className="tabs-wrapper" id={'layout-tab'}>
-        {/*<div className={'tabs-wrapper-inner'} style={{transform: `translateX(${-scrollLeft}px)`}} ref={tabInnerRef}>*/}
-        {/*  */}
-        {/*</div>*/}
         {tabs.map((tab, i) => (
           <Dropdown overlay={tabMenu(tab, i)} trigger={['contextMenu']} key={tab.path}>
             <span

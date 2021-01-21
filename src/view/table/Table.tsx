@@ -1,7 +1,8 @@
 /** @format */
 
-import React from 'react'
-import {Table as AntdTable, Space, Tag} from 'antd'
+import React, {useEffect} from 'react'
+import {Table as AntdTable, Space, Tag, message} from 'antd'
+import {useDidCache, useDidRecover} from 'react-router-cache-route'
 import {ColumnType} from 'antd/lib/table/interface'
 import CecIcon from '../../commpent/SvgIcon/SvgIcon'
 
@@ -87,6 +88,12 @@ const Table = () => {
       tags: ['cool', 'teacher'],
     },
   ]
+  useDidRecover(() => {
+    message.success('进入缓存')
+  })
+  useEffect(() => {
+    message.success('初始化')
+  }, [])
   return (
     <React.Fragment>
       <AntdTable columns={columns} dataSource={data} />

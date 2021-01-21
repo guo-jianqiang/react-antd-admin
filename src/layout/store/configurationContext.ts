@@ -1,9 +1,9 @@
 /** @format */
 
 import React from 'react'
-import {isEmpty} from '../../../lib/until'
-import {getItem} from '../../../lib/localStorage'
-import {SYStEM_CONFIG} from '../../../constant'
+import {isEmpty} from '../../lib/until'
+import {getItem} from '../../lib/localStorage'
+import {SYStEM_CONFIG} from '../../constant'
 import {ActionInterface, PayloadInterface} from './configurationReducer'
 
 export interface ConfigurationContextInterface {

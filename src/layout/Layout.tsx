@@ -1,5 +1,5 @@
 /** @format */
-import React, {FC, useEffect, useRef, useState, useContext, useReducer} from 'react'
+import React, {FC, useEffect, useRef, useReducer} from 'react'
 import {Link} from 'react-router-dom'
 import cx from 'classnames'
 import Header from './component/Header/Header'
@@ -15,17 +15,24 @@ import logo from '../assets/images/我的.svg'
 import project from '../../package.json'
 import ConfigurationDrawer from './component/ConfigurationDrawer/ConfigurationDrawer'
 import Tabs from './component/Tabs/Tabs'
-import {configurationReducer} from './component/store/configurationReducer'
-import ConfigurationContext, {getSystemConfig} from './component/store/configurationContext'
-import {actionCollapsed} from './component/store/configurationAction'
+import {configurationReducer} from './store/configurationReducer'
+import ConfigurationContext, {getSystemConfig} from './store/configurationContext'
+import {actionCollapsed} from './store/configurationAction'
 
+export interface aliveControlInterface {
+  dropByCacheKey: (cacheKey: string) => void
+  refreshByCacheKey: (cacheKey: string) => void
+  getCachingKeys: () => Array<string>
+  clearCache: () => void
+}
 interface LayoutProps {
+  aliveControl: aliveControlInterface;
   routeItems: Array<RouteItem>
   history: History
   userData: UserInterface | null
 }
 const Layout: FC<LayoutProps> = props => {
-  const {routeItems, history, userData} = props
+  const {routeItems, history, userData, aliveControl} = props
   const [configState, dispatch] = useReducer(configurationReducer, getSystemConfig())
   const contentRef = useRef<HTMLDivElement | null>(null)
   const layoutRef = useRef<HTMLDivElement | null>(null)
@@ -88,7 +95,7 @@ const Layout: FC<LayoutProps> = props => {
             collapseBtn={collapseBtn}
             breadcrumb={<Breadcrumb routes={routeItems} history={history} />}
           />
-          <Tabs history={history} routeItems={routeItems} />
+          <Tabs history={history} routeItems={routeItems} aliveControl={aliveControl} />
           <div className={'layout-right-content'} ref={contentRef}>
             {props.children}
             <BackTop

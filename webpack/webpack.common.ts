@@ -229,8 +229,7 @@ const config: webpack.Configuration = {
   },
   plugins: [
     new webpack.DefinePlugin({
-      "process.env.APP_CONFIG": JSON.stringify(envConfig),
-      "APP": JSON.stringify(envConfig)
+      "process.env.APP_CONFIG": JSON.stringify(envConfig)
     }),
     new HtmlWebpackPlugin({
       title: project.name,

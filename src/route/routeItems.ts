@@ -11,6 +11,7 @@ export interface RouteItem {
   exact: boolean
   meta: {
     tabFixed?: boolean
+    isCache?: boolean
     name: string
     icon: Function | string
     hidden?: boolean
@@ -25,6 +26,7 @@ const routeItems: Array<RouteItem> = [
     exact: true,
     meta: {
       tabFixed: true,
+      isCache: true,
       icon: 'iconuser',
       name: '首页',
     },
@@ -35,6 +37,7 @@ const routeItems: Array<RouteItem> = [
     exact: true,
     meta: {
       icon: 'iconyijibaogao',
+      isCache: true,
       name: '测试管理',
       hidden: true,
     },
@@ -46,6 +49,7 @@ const routeItems: Array<RouteItem> = [
         meta: {
           icon: 'iconuser',
           name: '列表',
+          isCache: true,
         },
         component: Table,
       },

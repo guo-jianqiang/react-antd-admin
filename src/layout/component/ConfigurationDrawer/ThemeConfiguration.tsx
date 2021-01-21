@@ -7,8 +7,8 @@ import './style.less'
 import {Tooltip} from 'antd'
 import ColorPopover from '../../../commpent/ColorPopconfirm/ColorPopover'
 import lessVarsUpdate from '../../../lib/less'
-import ConfigurationContext from '../store/configurationContext'
-import {actionPrimaryColor} from '../store/configurationAction'
+import ConfigurationContext from '../../store/configurationContext'
+import {actionPrimaryColor} from '../../store/configurationAction'
 import {getItem} from '../../../lib/localStorage'
 
 const ThemeConfiguration = () => {

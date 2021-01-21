@@ -1,16 +1,30 @@
 /** @format */
 
 import React, {useEffect, useState} from 'react'
-import {Router, Switch, Redirect, Route} from 'react-router-dom'
+import {Router, Redirect, Route} from 'react-router-dom'
+import CacheRoute, {
+  CacheSwitch,
+  dropByCacheKey,
+  clearCache,
+  refreshByCacheKey,
+  getCachingKeys,
+} from 'react-router-cache-route'
 import {ACCOUNT_INFO, LOGIN_PATH} from '../constant'
 import history from './history'
 import Login from '../view/login'
 import routeItems, {RouteItem} from './routeItems'
-import Layout from '../Layout/Layout'
+import Layout from '../layout/Layout'
 import {UserInterface} from '../lib/userData'
 import userContext from '../context/userContext'
 import {getFirstRoute, isEmpty} from '../lib/until'
 import {getItem} from '../lib/localStorage'
+
+const aliveControl = {
+  dropByCacheKey,
+  clearCache,
+  refreshByCacheKey,
+  getCachingKeys,
+}
 
 const Routes = () => {
   const [userData, setUserData] = useState<UserInterface | null>(null)
@@ -25,7 +39,16 @@ const Routes = () => {
     const routeMap = (arr: Array<RouteItem>) => {
       arr.forEach(route => {
         if (!route.meta.hidden) {
-          routes.push(<Route key={route.path} exact={route.exact} path={route.path} component={route.component} />)
+          routes.push(
+            <CacheRoute
+              when={() => !!route.meta.isCache}
+              cacheKey={route.path}
+              key={route.path}
+              exact={route.exact}
+              path={route.path}
+              component={route.component}
+            />,
+          )
         }
         if (route.routes && route.routes.length) routeMap(route.routes)
       })
@@ -41,15 +64,15 @@ const Routes = () => {
         setUserData,
       }}>
       <Router history={history}>
-        <Switch>
+        <CacheSwitch>
           <Route exact path="/">
             <Redirect to={isEmpty(getItem(ACCOUNT_INFO)) ? LOGIN_PATH : homePath} />
           </Route>
           <Route exact path={LOGIN_PATH} component={Login} />
-          <Layout routeItems={routeItems} userData={userData} history={history}>
+          <Layout routeItems={routeItems} userData={userData} history={history} aliveControl={aliveControl}>
             {renderRoutes()}
           </Layout>
-        </Switch>
+        </CacheSwitch>
       </Router>
     </userContext.Provider>
   )

@@ -1,8 +1,8 @@
 /** @format */
 
 import {CHANGE_PRIMARY_COLOR, COLLAPSE_MENU} from './actionTypes'
-import {setItem} from '../../../lib/localStorage'
-import {SYStEM_CONFIG} from '../../../constant'
+import {setItem} from '../../lib/localStorage'
+import {SYStEM_CONFIG} from '../../constant'
 export interface PayloadInterface {
   primaryColor: string
   collapsed: boolean

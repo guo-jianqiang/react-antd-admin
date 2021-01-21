@@ -5363,7 +5363,7 @@ min-indent@^1.0.0:
   resolved "https://registry.npm.taobao.org/min-indent/download/min-indent-1.0.1.tgz#a63f681673b30571fbe8bc25686ae746eefa9869"
   integrity sha1-pj9oFnOzBXH76LwlaGrnRu76mGk=
 
-mini-create-react-context@^0.4.0:
+mini-create-react-context@^0.4.0, mini-create-react-context@^0.4.1:
   version "0.4.1"
   resolved "https://registry.npm.taobao.org/mini-create-react-context/download/mini-create-react-context-0.4.1.tgz#072171561bfdc922da08a60c2197a497cc2d1d5e"
   integrity sha1-ByFxVhv9ySLaCKYMIZekl8wtHV4=
@@ -6787,6 +6787,13 @@ react-markdown@^5.0.3:
     unified "^9.0.0"
     unist-util-visit "^2.0.0"
     xtend "^4.0.1"
+
+react-router-cache-route@^1.11.0:
+  version "1.11.0"
+  resolved "https://registry.npm.taobao.org/react-router-cache-route/download/react-router-cache-route-1.11.0.tgz#cb9199099a4fd36d37c06b9ba70cba8327716426"
+  integrity sha1-y5GZCZpP0203wGubpwy6gydxZCY=
+  dependencies:
+    mini-create-react-context "^0.4.1"
 
 react-router-dom@^5.2.0:
   version "5.2.0"

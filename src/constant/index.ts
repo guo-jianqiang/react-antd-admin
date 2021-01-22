@@ -44,5 +44,5 @@ export const themeColors: Array<themeColorsInterface> = [
     id: 6,
     color: 'rgb(114, 46, 209)',
     name: '酱紫',
-  }
+  },
 ]

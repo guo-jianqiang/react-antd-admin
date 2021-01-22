@@ -5092,85 +5092,6 @@ a.ant-btn-sm {
   padding-left: 0;
 }
 
-/* stylelint-disable at-rule-empty-line-before,at-rule-name-space-after,at-rule-no-unknown */
-/* stylelint-disable no-duplicate-selectors */
-/* stylelint-disable */
-/* stylelint-disable declaration-bang-space-before,no-duplicate-selectors,string-no-newline */
-.ant-message {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  color: rgba(0, 0, 0, 0.85);
-  font-size: 14px;
-  font-variant: tabular-nums;
-  line-height: 1.5715;
-  list-style: none;
-  font-feature-settings: 'tnum';
-  position: fixed;
-  top: 8px;
-  left: 0;
-  z-index: 1010;
-  width: 100%;
-  pointer-events: none;
-}
-.ant-message-notice {
-  padding: 8px;
-  text-align: center;
-}
-.ant-message-notice-content {
-  display: inline-block;
-  padding: 10px 16px;
-  background: #fff;
-  border-radius: 2px;
-  box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
-  pointer-events: all;
-}
-.ant-message-success .anticon {
-  color: #52c41a;
-}
-.ant-message-error .anticon {
-  color: #ff4d4f;
-}
-.ant-message-warning .anticon {
-  color: #faad14;
-}
-.ant-message-info .anticon,
-.ant-message-loading .anticon {
-  color: #1890ff;
-}
-.ant-message .anticon {
-  position: relative;
-  top: 1px;
-  margin-right: 8px;
-  font-size: 16px;
-}
-.ant-message-notice.move-up-leave.move-up-leave-active {
-  animation-name: MessageMoveOut;
-  animation-duration: 0.3s;
-}
-@keyframes MessageMoveOut {
-  0% {
-    max-height: 150px;
-    padding: 8px;
-    opacity: 1;
-  }
-  100% {
-    max-height: 0;
-    padding: 0;
-    opacity: 0;
-  }
-}
-.ant-message-rtl {
-  direction: rtl;
-}
-.ant-message-rtl span {
-  direction: rtl;
-}
-.ant-message-rtl .anticon {
-  margin-right: 0;
-  margin-left: 8px;
-}
-
 .header {
   padding: 8px 16px;
   position: relative;
@@ -5277,100 +5198,6 @@ a.ant-btn-sm {
 
 .common-breadcrumb___1InyE {
   padding: 0;
-}
-
-.layout {
-  --layout-header-height: 60px;
-  --layout-tabs-height: 34px;
-  display: flex;
-  height: 100%;
-}
-.layout-mask {
-  visibility: hidden;
-  position: fixed;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.25);
-  z-index: 998;
-}
-.layout-mask.layout-mask-collapsed {
-  visibility: hidden;
-  transition: visibility 0s linear 300ms, background-color 300ms;
-}
-@media screen and (max-width: 768px) {
-  .layout-mask {
-    visibility: visible;
-    transition: visibility 0s linear 0s, background-color 300ms;
-  }
-}
-.layout-aside {
-  width: var(--layout-menu-width);
-  transition: all 0.3s cubic-bezier(0.2, 0, 0, 1) 0s;
-  background: var(--menu-background);
-}
-@media screen and (max-width: 768px) {
-  .layout-aside {
-    position: fixed;
-    left: 0;
-    top: 0;
-    height: 100%;
-    z-index: 999;
-  }
-}
-.layout-aside-logo {
-  position: relative;
-  display: flex;
-  align-items: center;
-  padding: 16px;
-  cursor: pointer;
-  transition: padding 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-}
-.layout-aside-logo a {
-  display: flex;
-}
-.layout-aside-logo a img {
-  height: 32px;
-}
-.layout-aside-logo a h1 {
-  margin-left: 12px;
-  margin-bottom: 0;
-  font-size: 18px;
-  color: #fff;
-}
-.layout-aside-logo.layout-aside-logo-collapsed {
-  padding: 16px 12px;
-}
-.layout-aside-menu {
-  height: calc(100% - 64px);
-  overflow-x: hidden;
-  overflow-y: auto;
-}
-.layout-aside .ant-menu-inline-collapsed {
-  width: var(--layout-menu-width);
-}
-@media screen and (max-width: 768px) {
-  .layout-aside.layout-aside-collapsed {
-    left: calc(0% - var(--layout-menu-width));
-  }
-}
-.layout-right {
-  flex: 1;
-  overflow-x: hidden;
-}
-.layout-right-headerBtn {
-  font-size: 18px;
-  margin-right: 16px;
-  cursor: pointer;
-}
-.layout-right-headerBtn:hover {
-  color: var(--primary-color);
-}
-.layout-right-content {
-  padding: 16px;
-  height: calc(100% - var(--layout-header-height) - var(--layout-tabs-height));
-  overflow: auto;
 }
 
 /* stylelint-disable at-rule-empty-line-before,at-rule-name-space-after,at-rule-no-unknown */
@@ -5659,6 +5486,85 @@ a.ant-btn-sm {
   transition: visibility 0s linear 300ms, opacity 300ms;
 }
 
+/* stylelint-disable at-rule-empty-line-before,at-rule-name-space-after,at-rule-no-unknown */
+/* stylelint-disable no-duplicate-selectors */
+/* stylelint-disable */
+/* stylelint-disable declaration-bang-space-before,no-duplicate-selectors,string-no-newline */
+.ant-message {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 14px;
+  font-variant: tabular-nums;
+  line-height: 1.5715;
+  list-style: none;
+  font-feature-settings: 'tnum';
+  position: fixed;
+  top: 8px;
+  left: 0;
+  z-index: 1010;
+  width: 100%;
+  pointer-events: none;
+}
+.ant-message-notice {
+  padding: 8px;
+  text-align: center;
+}
+.ant-message-notice-content {
+  display: inline-block;
+  padding: 10px 16px;
+  background: #fff;
+  border-radius: 2px;
+  box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+  pointer-events: all;
+}
+.ant-message-success .anticon {
+  color: #52c41a;
+}
+.ant-message-error .anticon {
+  color: #ff4d4f;
+}
+.ant-message-warning .anticon {
+  color: #faad14;
+}
+.ant-message-info .anticon,
+.ant-message-loading .anticon {
+  color: #1890ff;
+}
+.ant-message .anticon {
+  position: relative;
+  top: 1px;
+  margin-right: 8px;
+  font-size: 16px;
+}
+.ant-message-notice.move-up-leave.move-up-leave-active {
+  animation-name: MessageMoveOut;
+  animation-duration: 0.3s;
+}
+@keyframes MessageMoveOut {
+  0% {
+    max-height: 150px;
+    padding: 8px;
+    opacity: 1;
+  }
+  100% {
+    max-height: 0;
+    padding: 0;
+    opacity: 0;
+  }
+}
+.ant-message-rtl {
+  direction: rtl;
+}
+.ant-message-rtl span {
+  direction: rtl;
+}
+.ant-message-rtl .anticon {
+  margin-right: 0;
+  margin-left: 8px;
+}
+
 .tabs {
   display: flex;
   height: var(--layout-tabs-height);
@@ -5736,6 +5642,106 @@ a.ant-btn-sm {
   top: 50%;
   left: 4px;
   transform: translateY(-50%);
+}
+
+.layout {
+  --layout-header-height: 60px;
+  --layout-tabs-height: 34px;
+  display: flex;
+  height: 100%;
+}
+.layout-mask {
+  visibility: hidden;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.25);
+  z-index: 998;
+}
+.layout-mask.layout-mask-collapsed {
+  visibility: hidden;
+  transition: visibility 0s linear 300ms, background-color 300ms;
+}
+@media screen and (max-width: 768px) {
+  .layout-mask {
+    visibility: visible;
+    transition: visibility 0s linear 0s, background-color 300ms;
+  }
+}
+.layout-aside {
+  width: var(--layout-menu-width);
+  transition: all 0.3s cubic-bezier(0.2, 0, 0, 1) 0s;
+  background: var(--menu-background);
+}
+@media screen and (max-width: 768px) {
+  .layout-aside {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    z-index: 999;
+  }
+}
+.layout-aside-logo {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  cursor: pointer;
+  transition: padding 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+.layout-aside-logo a {
+  display: flex;
+}
+.layout-aside-logo a img {
+  height: 32px;
+}
+.layout-aside-logo a h1 {
+  margin-left: 12px;
+  margin-bottom: 0;
+  font-size: 18px;
+  color: #fff;
+}
+.layout-aside-logo.layout-aside-logo-collapsed {
+  padding: 16px 12px;
+}
+.layout-aside-menu {
+  height: calc(100% - 64px);
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.layout-aside .ant-menu-inline-collapsed {
+  width: var(--layout-menu-width);
+}
+@media screen and (max-width: 768px) {
+  .layout-aside.layout-aside-collapsed {
+    left: calc(0% - var(--layout-menu-width));
+  }
+}
+.layout-right {
+  flex: 1;
+  overflow-x: hidden;
+}
+.layout-right-headerBtn {
+  font-size: 18px;
+  margin-right: 16px;
+  cursor: pointer;
+}
+.layout-right-headerBtn:hover {
+  color: var(--primary-color);
+}
+.layout-right-content {
+  padding: 16px;
+  height: calc(100% - var(--layout-header-height) - var(--layout-tabs-height));
+  overflow: auto;
+}
+/*文本超出部分用省略号显示*/
+.text-ellipsis-1 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 :root {

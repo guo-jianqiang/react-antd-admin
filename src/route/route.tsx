@@ -14,10 +14,12 @@ import history from './history'
 import Login from '../view/login'
 import routeItems, {RouteItem} from './routeItems'
 import Layout from '../layout/Layout'
-import {UserInterface} from '../lib/userData'
+import {removeUserData, UserInterface} from '../lib/userData'
 import userContext from '../context/userContext'
 import {getFirstRoute, isEmpty} from '../lib/until'
 import {getItem} from '../lib/localStorage'
+
+const {Tabs} = Layout
 
 const aliveControl = {
   dropByCacheKey,
@@ -34,6 +36,10 @@ const Routes = () => {
       setUserData(getItem(ACCOUNT_INFO))
     }
   }, [])
+  const handleClickDrop = () => {
+    Tabs.clearTabsCache()
+    removeUserData()
+  }
   const renderRoutes = () => {
     let routes: Array<React.ReactNode> = []
     const routeMap = (arr: Array<RouteItem>) => {
@@ -69,7 +75,12 @@ const Routes = () => {
             <Redirect to={isEmpty(getItem(ACCOUNT_INFO)) ? LOGIN_PATH : homePath} />
           </Route>
           <Route exact path={LOGIN_PATH} component={Login} />
-          <Layout routeItems={routeItems} userData={userData} history={history} aliveControl={aliveControl}>
+          <Layout
+            routeItems={routeItems}
+            username={userData?.username || ''}
+            history={history}
+            aliveControl={aliveControl}
+            onClickDrop={handleClickDrop}>
             {renderRoutes()}
           </Layout>
         </CacheSwitch>

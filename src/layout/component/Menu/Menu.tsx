@@ -10,7 +10,7 @@ import Icon from '../../../commpent/icon/Icon'
 
 const {Item, SubMenu} = AntdMenu
 
-interface MenuProps {
+export interface MenuProps {
   collapsed: boolean
   routeItems: Array<RouteItem>
   history: History

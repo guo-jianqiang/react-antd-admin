@@ -9,25 +9,26 @@ import './style.less'
 import {LOGIN_PATH} from '../../../constant'
 import Icon from '../../../commpent/icon/Icon'
 
-interface HeaderProps {
-  userData: UserInterface | null
+export interface HeaderProps {
+  username: string
   breadcrumb: React.ReactNode
   collapseBtn: React.ReactNode
   history: History
+  onClickDrop: () => void
 }
 
 const Header: FC<HeaderProps> = props => {
-  const {history} = props
+  const {history, onClickDrop} = props
   const handleClickDrop = () => {
     history.push(LOGIN_PATH)
-    removeUserData()
+    onClickDrop && onClickDrop()
   }
   const menu = (
     <Menu>
       <Menu.Item onClick={handleClickDrop}>退出</Menu.Item>
     </Menu>
   )
-  const {userData, breadcrumb, collapseBtn} = props
+  const {username, breadcrumb, collapseBtn} = props
   return (
     <header className={'header'}>
       <div className={'header-left'}>
@@ -35,8 +36,8 @@ const Header: FC<HeaderProps> = props => {
         {breadcrumb}
       </div>
       <div className={'header-right'}>
-        <Tooltip title={userData?.username}>
-          <span className={cx('header-right-admin', 'text-ellipsis-1')}>{userData?.username}</span>
+        <Tooltip title={username}>
+          <span className={cx('header-right-admin', 'text-ellipsis-1')}>{username}</span>
         </Tooltip>
         <Dropdown overlay={menu} placement="bottomRight" arrow>
           <Avatar

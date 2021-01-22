@@ -5,7 +5,7 @@ import {History} from 'history'
 import {Menu, Dropdown, Tooltip} from 'antd'
 import {RouteItem} from '../../../route/routeItems'
 import {treeForeach, isEmpty} from '../../../lib/until'
-import {getItem, setItem} from '../../../lib/localStorage'
+import {getItem, removeItem, setItem} from '../../../lib/localStorage'
 import cx from 'classnames'
 import {CloseCircleOutlined, LeftOutlined, RightOutlined} from '@ant-design/icons'
 import './style.less'
@@ -22,6 +22,7 @@ const TAB_ACTIONS = {
   DEL_OTHER: 'DEL_OTHER', // 删除其他
   DEL_ALL: 'DEL_ALL', //删除所有
 }
+
 interface TabsProps<T> {
   scrollDistance?: number
   history: History
@@ -29,7 +30,13 @@ interface TabsProps<T> {
   aliveControl: aliveControlInterface
 }
 
-const Tabs: FC<TabsProps<RouteItem>> = props => {
+type TabsStaticFun = {
+  clearTabsCache: () => void
+}
+
+export type TabsType = FC<TabsProps<RouteItem>> & TabsStaticFun
+
+const Tabs: TabsType = props => {
   const localTabs = !isEmpty(getItem(LAYOUT_TAB)) ? getItem(LAYOUT_TAB) : []
   const {history, routeItems, scrollDistance = 200, aliveControl} = props
   const [tabs, setTabs] = useState<Array<RouteItem>>(localTabs)
@@ -215,6 +222,10 @@ const Tabs: FC<TabsProps<RouteItem>> = props => {
       </div>
     </div>
   )
+}
+
+Tabs.clearTabsCache = () => {
+  removeItem(LAYOUT_TAB)
 }
 
 export default Tabs

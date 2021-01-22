@@ -1,13 +1,11 @@
 /** @format */
-import React, {FC, useEffect, useRef, useReducer} from 'react'
+import React, {FC, useRef, useReducer} from 'react'
 import {Link} from 'react-router-dom'
 import cx from 'classnames'
 import Header from './component/Header/Header'
 import Breadcrumb from './component/Breadcrumb/Breadcrumb'
 import {History} from 'history'
-import './style.less'
 import {RouteItem} from '../route/routeItems'
-import {UserInterface} from '../lib/userData'
 import Menu from './component/Menu/Menu'
 import Icon from '../commpent/icon/Icon'
 import {Tooltip, BackTop} from 'antd'
@@ -18,6 +16,7 @@ import Tabs from './component/Tabs/Tabs'
 import {configurationReducer} from './store/configurationReducer'
 import ConfigurationContext, {getSystemConfig} from './store/configurationContext'
 import {actionCollapsed} from './store/configurationAction'
+import './style.less'
 
 export interface aliveControlInterface {
   dropByCacheKey: (cacheKey: string) => void
@@ -26,13 +25,22 @@ export interface aliveControlInterface {
   clearCache: () => void
 }
 interface LayoutProps {
+  logo?: any
   aliveControl: aliveControlInterface
   routeItems: Array<RouteItem>
   history: History
-  userData: UserInterface | null
+  username: string
+  onClickDrop: () => void
 }
-const Layout: FC<LayoutProps> = props => {
-  const {routeItems, history, userData, aliveControl} = props
+type LayoutInnerComponent = {
+  Tabs: typeof Tabs
+  Header: typeof Header
+  Menu: typeof Menu
+  Breadcrumb: typeof Breadcrumb
+  ConfigurationDrawer: typeof ConfigurationDrawer
+}
+const Layout: FC<LayoutProps> & LayoutInnerComponent = props => {
+  const {routeItems, history, username, aliveControl, onClickDrop} = props
   const [configState, dispatch] = useReducer(configurationReducer, getSystemConfig())
   const contentRef = useRef<HTMLDivElement | null>(null)
   const layoutRef = useRef<HTMLDivElement | null>(null)
@@ -41,6 +49,9 @@ const Layout: FC<LayoutProps> = props => {
   }
   const handleClickMask = () => {
     dispatch(actionCollapsed({...configState, collapsed: true}))
+  }
+  const handleClickDrop = () => {
+    onClickDrop && onClickDrop()
   }
   const {collapsed} = configState
   const collapseBtn = (
@@ -88,8 +99,9 @@ const Layout: FC<LayoutProps> = props => {
         <div className={'layout-right'}>
           <Header
             history={history}
-            userData={userData}
+            username={username}
             collapseBtn={collapseBtn}
+            onClickDrop={handleClickDrop}
             breadcrumb={<Breadcrumb routes={routeItems} history={history} />}
           />
           <Tabs history={history} routeItems={routeItems} aliveControl={aliveControl} />
@@ -106,5 +118,11 @@ const Layout: FC<LayoutProps> = props => {
     </ConfigurationContext.Provider>
   )
 }
+
+Layout.Tabs = Tabs
+Layout.Header = Header
+Layout.Menu = Menu
+Layout.Breadcrumb = Breadcrumb
+Layout.ConfigurationDrawer = ConfigurationDrawer
 
 export default Layout

@@ -9,7 +9,7 @@ import {RouteItem} from '../route/routeItems'
 import Menu from './component/Menu/Menu'
 import Icon from '../commpent/icon/Icon'
 import {Tooltip, BackTop} from 'antd'
-import logo from '../assets/images/我的.svg'
+import defaultLogo from '../assets/images/我的.svg'
 import project from '../../package.json'
 import ConfigurationDrawer from './component/ConfigurationDrawer/ConfigurationDrawer'
 import Tabs from './component/Tabs/Tabs'
@@ -40,7 +40,7 @@ type LayoutInnerComponent = {
   ConfigurationDrawer: typeof ConfigurationDrawer
 }
 const Layout: FC<LayoutProps> & LayoutInnerComponent = props => {
-  const {routeItems, history, username, aliveControl, onClickDrop} = props
+  const {routeItems, history, username, aliveControl, onClickDrop, logo} = props
   const [configState, dispatch] = useReducer(configurationReducer, getSystemConfig())
   const contentRef = useRef<HTMLDivElement | null>(null)
   const layoutRef = useRef<HTMLDivElement | null>(null)
@@ -86,7 +86,7 @@ const Layout: FC<LayoutProps> & LayoutInnerComponent = props => {
               'layout-aside-logo-collapsed': collapsed,
             })}>
             <Link to={'/home'}>
-              <img src={logo} />
+              <img src={logo || defaultLogo} />
               {/*<logo />*/}
               {!collapsed && <h1 className={'text-ellipsis-1'}>{project.name}</h1>}
             </Link>

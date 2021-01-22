@@ -8,7 +8,7 @@
 
 线上地址[ http://g_guojq.gitee.io/react-antd-admin]( http://g_guojq.gitee.io/react-antd-admin)
 
-git地址 [https://github.com/guo-jianqiang/react-antd-admin](https://github.com/guo-jianqiang/react-antd-admin)
+git地址 https://github.com/guo-jianqiang/react-antd-admin
 
 ## 1.ConfigurationDrawer
 
@@ -74,7 +74,7 @@ Layout组件中传入缓存控制函数，更多信息请查看[react-router-cac
 
 ```tsx
 export interface aliveControlInterface {
-  dropByCacheKey: (cacheKey: string) => void  // 清除缓存，仅当前页面路由和清除缓存路由不同时可使用
+  dropByCacheKey: (cacheKey: string) => void  // 清除缓存，仅当前页面路由和清除缓存路由不显示时可使用
   refreshByCacheKey: (cacheKey: string) => void // 刷新当前路由
   getCachingKeys: () => Array<string> // 或者缓存路由key列表
   clearCache: () => void // 清除所有缓存

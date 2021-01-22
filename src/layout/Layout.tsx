@@ -26,7 +26,7 @@ export interface aliveControlInterface {
   clearCache: () => void
 }
 interface LayoutProps {
-  aliveControl: aliveControlInterface;
+  aliveControl: aliveControlInterface
   routeItems: Array<RouteItem>
   history: History
   userData: UserInterface | null

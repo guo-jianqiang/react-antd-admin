@@ -10,7 +10,7 @@ import cx from 'classnames'
 import {CloseCircleOutlined, LeftOutlined, RightOutlined} from '@ant-design/icons'
 import './style.less'
 import {MenuInfo} from 'rc-menu/lib/interface'
-import {aliveControlInterface} from "../../Layout";
+import {aliveControlInterface} from '../../Layout'
 
 const LAYOUT_TAB = '__layout_tab__'
 const TAB_ACTIONS = {
@@ -23,10 +23,10 @@ const TAB_ACTIONS = {
   DEL_ALL: 'DEL_ALL', //删除所有
 }
 interface TabsProps<T> {
-  scrollDistance?: number;
-  history: History;
-  routeItems: Array<T>;
-  aliveControl: aliveControlInterface;
+  scrollDistance?: number
+  history: History
+  routeItems: Array<T>
+  aliveControl: aliveControlInterface
 }
 
 const Tabs: FC<TabsProps<RouteItem>> = props => {
@@ -48,7 +48,7 @@ const Tabs: FC<TabsProps<RouteItem>> = props => {
     setItem(LAYOUT_TAB, tabs)
     scrollIntoTab()
     if (routeRef.current && tabAction.current !== TAB_ACTIONS.ADD) {
-      history.push(routeRef.current?.path)
+      if (routeRef.current?.path !== history.location.pathname) history.push(routeRef.current?.path)
       prevTabs.current.forEach(prevTab => {
         if (!tabs.find(tab => tab.path === prevTab.path)) {
           aliveControl.dropByCacheKey(prevTab.path)
@@ -110,10 +110,10 @@ const Tabs: FC<TabsProps<RouteItem>> = props => {
     setTabs((prevTabs: Array<RouteItem> = []) => {
       const index = prevTabs.findIndex(item => item.path === tab.path)
       prevTabs.splice(index, 1)
-      if (history.location.pathname === tab.path && prevTabs.length) {
+      if (prevTabs.length) {
         if (routeRef.current && prevTabs[index - 1]) routeRef.current = prevTabs[index - 1]
-        tabAction.current = TAB_ACTIONS.DEL
       }
+      tabAction.current = TAB_ACTIONS.DEL
       return [...prevTabs]
     })
   }
@@ -122,8 +122,8 @@ const Tabs: FC<TabsProps<RouteItem>> = props => {
       const fixedTabs = prevTabs.filter(item => item.meta.tabFixed)
       if (fixedTabs.length) {
         if (routeRef.current) routeRef.current = fixedTabs[0]
-        tabAction.current = TAB_ACTIONS.DEL_ALL
       }
+      tabAction.current = TAB_ACTIONS.DEL_ALL
       return [...fixedTabs]
     })
   }

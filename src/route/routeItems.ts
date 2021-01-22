@@ -60,7 +60,7 @@ const routeItems: Array<RouteItem> = [
     exact: true,
     meta: {
       icon: 'iconyijibaogao',
-      name: '测试管理2',
+      name: '测试管理测试测试测试测试',
       hidden: true,
     },
     component: EmptyRoute,

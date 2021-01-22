@@ -5612,6 +5612,7 @@ a.ant-btn-sm {
 }
 .tabs-wrapper-item-name {
   display: inline-block;
+  vertical-align: bottom;
   max-width: 120px;
 }
 .tabs-wrapper-item-close {

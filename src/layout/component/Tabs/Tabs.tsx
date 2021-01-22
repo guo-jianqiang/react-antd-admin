@@ -207,7 +207,7 @@ const Tabs: TabsType = props => {
                 'tabs-wrapper-active': tab.path === history.location.pathname,
               })}
               onClick={handleClickTab(tab)}>
-              <span className={'tabs-wrapper-item-name'}>{tab.meta.name}</span>
+              <span className={'tabs-wrapper-item-name text-ellipsis-1'}>{tab.meta.name}</span>
               {!tab.meta.tabFixed && (
                 <CloseCircleOutlined className="tabs-wrapper-item-close" onClick={handleClickCloseTab(tab)} />
               )}

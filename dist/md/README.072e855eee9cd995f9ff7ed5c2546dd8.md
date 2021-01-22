@@ -48,7 +48,7 @@ window.less.modifyVars(vars).then(() => {
 
 ### 2-1.支持可缓存路由
 
-![](./static/images/routeCache.gif)
+![](./static/images/route-cache.gif)
 
 配置只需在routeItems文件中配置参数即可，如下
 

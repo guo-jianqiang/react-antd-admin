@@ -12,9 +12,9 @@ export interface RouteItem {
   meta: {
     tabFixed?: boolean
     isCache?: boolean
+    hidden?: boolean
     name: string
     icon: Function | string
-    hidden?: boolean
   }
   component: ComponentType
   routes?: Array<RouteItem>

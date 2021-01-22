@@ -40,4 +40,9 @@ export const themeColors: Array<themeColorsInterface> = [
     color: 'rgb(82, 196, 26)',
     name: '激光绿',
   },
+  {
+    id: 6,
+    color: 'rgb(114, 46, 209)',
+    name: '酱紫',
+  }
 ]

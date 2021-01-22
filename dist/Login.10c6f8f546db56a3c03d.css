@@ -6961,7 +6961,7 @@ textarea.ant-input {
   width: 50%;
   background: #fff;
   box-shadow: 0px 11px 14px -7px rgba(0, 0, 0, 0.2), 0px 23px 36px 3px rgba(0, 0, 0, 0.056), 0px 9px 44px 8px rgba(0, 0, 0, 0.048);
-  animation: slide-top___-T_aV 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: slide-top___-T_aV 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 @media screen and (max-width: 768px) {
   .login-wrapper___9Qa0W {
@@ -7004,10 +7004,12 @@ textarea.ant-input {
 }
 @keyframes slide-top___-T_aV {
   0% {
-    -webkit-transform: translateY(100px);
-    transform: translateY(100px);
+    opacity: 0;
+    -webkit-transform: translateY(80px);
+    transform: translateY(80px);
   }
   100% {
+    opacity: 1;
     -webkit-transform: translateY(0);
     transform: translateY(0);
   }

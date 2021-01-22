@@ -129,7 +129,7 @@ const Tabs: FC<TabsProps<RouteItem>> = props => {
   }
   const handleClickTab = (route: RouteItem) => (e: React.MouseEvent<HTMLSpanElement>) => {
     e.stopPropagation()
-    history.push(route.path)
+    route.path !== history.location.pathname && history.push(route.path)
     if (routeRef.current) routeRef.current = route
   }
 

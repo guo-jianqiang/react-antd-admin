@@ -43,9 +43,6 @@ const Layout: FC<LayoutProps> = props => {
     dispatch(actionCollapsed({...configState, collapsed: true}))
   }
   const {collapsed} = configState
-  useEffect(() => {
-    layoutRef.current?.style.setProperty('--layout-menu-width', collapsed ? '56px' : '220px')
-  }, [collapsed])
   const collapseBtn = (
     <Tooltip title={collapsed ? '展开' : '收起'}>
       <Icon

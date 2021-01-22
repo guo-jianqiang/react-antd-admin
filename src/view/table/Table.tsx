@@ -1,6 +1,6 @@
 /** @format */
 
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import {Table as AntdTable, Space, Tag, message} from 'antd'
 import {useDidCache, useDidRecover} from 'react-router-cache-route'
 import {ColumnType} from 'antd/lib/table/interface'
@@ -16,6 +16,7 @@ type recordProps = {
 }
 
 const Table = () => {
+  const [loading, setLoading] = useState(true)
   const columns: Array<ColumnType<recordProps>> = [
     {
       title: 'Name',
@@ -93,10 +94,13 @@ const Table = () => {
   })
   useEffect(() => {
     message.success('初始化')
+    setTimeout(() => {
+      setLoading(false)
+    }, 1000)
   }, [])
   return (
     <React.Fragment>
-      <AntdTable columns={columns} dataSource={data} />
+      <AntdTable columns={columns} dataSource={data} loading={loading} />
     </React.Fragment>
   )
 }

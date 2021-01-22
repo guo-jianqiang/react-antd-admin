@@ -4,6 +4,7 @@ import React, {useEffect, useState} from 'react'
 import ReactMarkdown from 'react-markdown'
 import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
 import md from '../../../README.md'
+import './style.less'
 
 const renderers = {
   code: (props: {language: string; value: string}) => {
@@ -21,6 +22,7 @@ const ReadMe = () => {
   }, [])
   return (
     <ReactMarkdown
+      className={'markdown-body'}
       renderers={renderers}
       children={source}
       transformImageUri={uri => (uri.startsWith('http') ? uri : `${uri}`)}

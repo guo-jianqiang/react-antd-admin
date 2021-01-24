@@ -3,7 +3,7 @@
 import React from 'react'
 import {isEmpty} from '../../lib/until'
 import {getItem} from '../../lib/localStorage'
-import {SYStEM_CONFIG} from '../../constant'
+import {SYSTEM_CONFIG} from '../../constant'
 import {ActionInterface, PayloadInterface} from './configurationReducer'
 
 export interface ConfigurationContextInterface {
@@ -12,8 +12,8 @@ export interface ConfigurationContextInterface {
 }
 const primaryColor = window.getComputedStyle(document.documentElement, null).getPropertyValue('--primary-color') || ''
 export const getSystemConfig = () =>
-  !isEmpty(getItem(SYStEM_CONFIG))
-    ? getItem(SYStEM_CONFIG)
+  !isEmpty(getItem(SYSTEM_CONFIG))
+    ? getItem(SYSTEM_CONFIG)
     : {
         primaryColor,
         collapsed: true,

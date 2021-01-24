@@ -1,7 +1,7 @@
 /** @format */
 
 import React, {useContext, useEffect} from 'react'
-import {SYStEM_CONFIG, themeColors} from '../../../constant'
+import {themeColors} from '../../../constant'
 import {CheckOutlined} from '@ant-design/icons'
 import './style.less'
 import {Tooltip} from 'antd'
@@ -9,7 +9,6 @@ import ColorPopover from '../../../commpent/ColorPopconfirm/ColorPopover'
 import lessVarsUpdate from '../../../lib/less'
 import ConfigurationContext from '../../store/configurationContext'
 import {actionPrimaryColor} from '../../store/configurationAction'
-import {getItem} from '../../../lib/localStorage'
 
 const ThemeConfiguration = () => {
   const initialColor = window.getComputedStyle(document.documentElement, null).getPropertyValue('--primary-color')

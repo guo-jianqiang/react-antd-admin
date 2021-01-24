@@ -4,7 +4,7 @@ export const LOGIN_PATH = '/login'
 
 export const ACCOUNT_INFO = '__account_info__'
 
-export const SYStEM_CONFIG = '__system_config__'
+export const SYSTEM_CONFIG = '__system_config__'
 
 export const SYSTEM_CONFIG_DRAWER_WIDTH = 256
 

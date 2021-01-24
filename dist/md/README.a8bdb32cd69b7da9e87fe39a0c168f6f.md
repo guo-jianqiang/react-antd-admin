@@ -10,6 +10,9 @@
 
 git地址 [https://github.com/guo-jianqiang/react-antd-admin](https://github.com/guo-jianqiang/react-antd-admin)
 
+## 单独使用Layout
+详情请查看[antd-deer-ui](https://gitee.com/g_guojq/react-component-template)
+
 ## 1.ConfigurationDrawer
 
 ### 1-1.可缓存系统配置
@@ -34,7 +37,7 @@ git地址 [https://github.com/guo-jianqiang/react-antd-admin](https://github.com
 
 ```ts
 window.less.modifyVars(vars).then(() => {
-    if (vars['@primary-color'] === getItem(SYStEM_CONFIG).primaryColor) return
+    if (vars['@primary-color'] === getItem(SYSTEM_CONFIG).primaryColor) return
     message.success('主题色切换成功')
   })
   window.less.refreshStyles()

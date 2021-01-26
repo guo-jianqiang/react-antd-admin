@@ -770,9 +770,6 @@ tr.ant-table-expanded-row .ant-descriptions-view table {
   height: 100%;
   margin: auto;
 }
-.ant-empty-description {
-  margin: 0;
-}
 .ant-empty-footer {
   margin-top: 16px;
 }
@@ -2209,6 +2206,7 @@ textarea.ant-pagination-options-quick-jumper input {
 }
 .ant-select-selection-overflow-item {
   flex: none;
+  align-self: center;
   max-width: 100%;
 }
 .ant-select-multiple .ant-select-selector {

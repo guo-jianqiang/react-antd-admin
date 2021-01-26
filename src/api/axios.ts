@@ -1,6 +1,6 @@
 /** @format */
 
-import axios, {AxiosInstance, AxiosRequestConfig, AxiosError, AxiosResponse, AxiosPromise} from 'axios'
+import axios, {AxiosInstance, AxiosRequestConfig} from 'axios'
 import {message} from 'antd'
 import {Base64} from 'js-base64'
 import myHistory from '../route/history'
@@ -20,7 +20,7 @@ instance.interceptors.request.use(
   function (config: AxiosRequestConfig) {
     if (config.params) {
       const params = {...config.params}
-      Object.keys(params).map(key => {
+      Object.keys(params).forEach(key => {
         if (typeof params[key] === 'undefined' || params[key] === '' || params[key] === null) {
           delete params[key]
         }

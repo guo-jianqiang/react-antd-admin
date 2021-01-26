@@ -13,7 +13,9 @@ import {ACCOUNT_INFO, LOGIN_PATH} from '../constant'
 import history from './history'
 import Login from '../view/login'
 import routeItems, {RouteItem} from './routeItems'
-import Layout from '../layout/Layout'
+// import Layout from '../layout/Layout'
+import pkg from '../../package.json'
+import {Layout} from 'little-deer-ui'
 import {removeUserData, UserInterface} from '../lib/userData'
 import userContext from '../context/userContext'
 import {getFirstRoute, isEmpty} from '../lib/until'
@@ -41,7 +43,7 @@ const Routes = () => {
     removeUserData()
   }
   const renderRoutes = () => {
-    let routes: Array<React.ReactNode> = []
+    const routes: Array<React.ReactNode> = []
     const routeMap = (arr: Array<RouteItem>) => {
       arr.forEach(route => {
         if (!route.meta.hidden) {
@@ -76,6 +78,7 @@ const Routes = () => {
           </Route>
           <Route exact path={LOGIN_PATH} component={Login} />
           <Layout
+            proName={pkg.name}
             routeItems={routeItems}
             username={userData?.username || ''}
             history={history}

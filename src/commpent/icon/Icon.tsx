@@ -3,7 +3,7 @@
 import * as React from 'react'
 import {createFromIconfontCN} from '@ant-design/icons'
 
-declare var require: any
+declare let require: any
 
 export interface IconProps {
   type: string

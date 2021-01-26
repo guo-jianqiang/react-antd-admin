@@ -7,8 +7,8 @@ export default function getPosition(el: HTMLElement) {
   while (el) {
     if (el.tagName == 'BODY') {
       // deal with browser quirks with body/window/document and page scroll
-      let xScrollPos = el.scrollLeft || document.documentElement.scrollLeft
-      let yScrollPos = el.scrollTop || document.documentElement.scrollTop
+      const xScrollPos = el.scrollLeft || document.documentElement.scrollLeft
+      const yScrollPos = el.scrollTop || document.documentElement.scrollTop
 
       xPosition += el.offsetLeft - xScrollPos + el.clientLeft
       yPosition += el.offsetTop - yScrollPos + el.clientTop

@@ -19,8 +19,8 @@ export const isEmpty = (obj: any) => {
 
 // 广度优先
 export function treeForeach<T extends {routes?: Array<T>}>(tree: Array<T>, func: (node: T) => void) {
-  let node,
-    list = [...tree]
+  let node
+  const list = [...tree]
   while ((node = list.shift())) {
     func(node)
     node.routes && list.push(...node.routes)
@@ -37,8 +37,8 @@ export function treeForeach<T extends {routes?: Array<T>}>(tree: Array<T>, func:
 
 export function getTreePath<T>(nodes: Array<T>, handler: (node: T) => {}, key = 'children') {
   nodes = !Array.isArray(nodes) ? [nodes] : [...nodes]
-  let path: Array<T> = []
-  let getPaths = (tree: Array<any>): any => {
+  const path: Array<T> = []
+  const getPaths = (tree: Array<any>): any => {
     for (let i = 0; i < tree.length; i++) {
       const item = tree[i]
       path.push(item)

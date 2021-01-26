@@ -11,15 +11,15 @@
 git地址 [https://github.com/guo-jianqiang/react-antd-admin](https://github.com/guo-jianqiang/react-antd-admin)
 
 ## 单独使用Layout
-详情请查看[antd-deer-ui](https://gitee.com/g_guojq/react-component-template)
+详情请查看[little-deer-ui](https://gitee.com/g_guojq/little-deer-ui)
 
 ## 1.ConfigurationDrawer
 
 ### 1-1.可缓存系统配置
 
-记录用户使用的系统配置，缓存浏览器中，记录用户习惯。目前可支持菜单展开收起状态和换肤
+记录用户使用的系统配置，缓存浏览器中，记录用户习惯.
 
-### 1-2.antd换肤
+### 1-2.antd换肤(Layout组件未封装)
 ![](./static/images/theme.gif)
 
 使用[antd-theme-webpack-plugin](https://github.com/mzohaibqc/antd-theme-webpack-plugin)插件实现导出antd样式文件并绑定cssVariable，通过less.js 浏览器在线编译改变less variable 方法实现主题样式变更

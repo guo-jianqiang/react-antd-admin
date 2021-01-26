@@ -87,7 +87,7 @@ const Layout: FC<LayoutProps> & LayoutInnerComponent = props => {
             })}>
             <Link to={'/home'}>
               <img src={logo || defaultLogo} />
-              {/*<logo />*/}
+              {/* <logo /> */}
               {!collapsed && <h1 className={'text-ellipsis-1'}>{project.name}</h1>}
             </Link>
           </div>

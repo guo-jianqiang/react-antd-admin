@@ -16,11 +16,11 @@ const LAYOUT_TAB = '__layout_tab__'
 const TAB_ACTIONS = {
   REFRESH: 'REFRESH', // 刷新
   ADD: 'ADD', // 添加
-  DEL: 'DEL', //删除
-  DEL_RIGHT: 'DEL_RIGHT', //删除右边
+  DEL: 'DEL', // 删除
+  DEL_RIGHT: 'DEL_RIGHT', // 删除右边
   DEL_LEFT: 'DEL_LEFT', // 删除左边
   DEL_OTHER: 'DEL_OTHER', // 删除其他
-  DEL_ALL: 'DEL_ALL', //删除所有
+  DEL_ALL: 'DEL_ALL', // 删除所有
 }
 
 interface TabsProps<T> {

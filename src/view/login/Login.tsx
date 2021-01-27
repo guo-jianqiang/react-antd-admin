@@ -28,7 +28,7 @@ const Login: FC<LoginProps> = (props: {}) => {
     console.log(event)
   }
   const onFinish = (values: any) => {
-    console.log('Success:', values)
+    console.log(values)
     const {username, password} = values
     if (values.remember) {
       setItem(ACCOUNT_INFO, {username})

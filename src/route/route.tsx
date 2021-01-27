@@ -83,7 +83,8 @@ const Routes = () => {
             username={userData?.username || ''}
             history={history}
             aliveControl={aliveControl}
-            onClickDrop={handleClickDrop}>
+            onClickDrop={handleClickDrop}
+          >
             {renderRoutes()}
           </Layout>
         </CacheSwitch>

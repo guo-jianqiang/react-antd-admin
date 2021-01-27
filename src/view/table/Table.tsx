@@ -100,7 +100,7 @@ const Table = () => {
   }, [])
   return (
     <React.Fragment>
-      <AntdTable columns={columns} dataSource={data} loading={loading} />
+      <AntdTable columns={columns} rowKey={'key'} dataSource={data} loading={loading} />
     </React.Fragment>
   )
 }

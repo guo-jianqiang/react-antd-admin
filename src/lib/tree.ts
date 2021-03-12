@@ -1,3 +1,4 @@
+
 // 深拷贝
 export const deepAssign: (to: { [key: string]: any }, from: { [key: string]: any }) => Object = (to, from) => {
   Object.keys(from).forEach(key => {
@@ -125,6 +126,48 @@ export const filterTree = (
     })
   }
   return filter(_tree)
+}
+
+type listNodeType = {parentId: number | string, id: number | string, [key: string]: any}
+/**
+ * 数组转树
+ * @param list 
+ * @param childrenKey 孩子键
+ * @param parentIdKey 父id键
+ * @param defaultRootId 默认根级id
+ */
+export const listToTree = (
+  list: Array<listNodeType>,
+  childrenKey = 'children',
+  parentIdKey = 'parentId',
+  defaultRootId = 0
+) => {
+  const map = list.reduce((prevMap: any, current) => {
+    prevMap[current.id] = current
+    return prevMap
+  }, {})
+  return list.filter(item => {
+    if (map[item[parentIdKey]]) {
+      if (!map[item[parentIdKey]].children) map[item[parentIdKey]][childrenKey] = []
+      map[item[parentIdKey]][childrenKey].push(item)
+    }
+    return item[parentIdKey] === defaultRootId
+  })
+}
+/**
+ * 树转数组
+ * @param tree 
+ * @param childrenKey 
+ */
+export const treeToList = (
+  tree: any,
+  childrenKey = 'children'
+) => {
+  const list: Array<any> = []
+  treeDeepForeach(tree, node => {
+    list.push(node)
+  }, childrenKey)
+  return list
 }
 
 /**

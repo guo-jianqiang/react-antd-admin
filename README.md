@@ -6,12 +6,12 @@
 
 ![](./static/images/system.png)
 
-线上地址[ http://g_guojq.gitee.io/react-antd-admin]( http://g_guojq.gitee.io/react-antd-admin)
+线上地址[ http://g_guojq.gitee.io/react-antd-admin]( http://gjq0208.gitee.io/react-antd-admin)
 
 git地址 [https://github.com/guo-jianqiang/react-antd-admin](https://github.com/guo-jianqiang/react-antd-admin)
-
+  
 ## 单独使用Layout
-详情请查看[little-deer-ui](https://gitee.com/g_guojq/little-deer-ui)
+详情请查看[little-deer-ui](https://gitee.com/gjq0208/little-deer-ui)
 
 ## 1.ConfigurationDrawer
 

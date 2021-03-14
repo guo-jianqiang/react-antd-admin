@@ -6,7 +6,7 @@
 
 ![](./static/images/system.png)
 
-线上地址[ http://g_guojq.gitee.io/react-antd-admin]( http://gjq0208.gitee.io/react-antd-admin)
+线上地址[ http://gjq0208.gitee.io/react-antd-admin]( http://gjq0208.gitee.io/react-antd-admin)
 
 git地址 [https://github.com/guo-jianqiang/react-antd-admin](https://github.com/guo-jianqiang/react-antd-admin)
   

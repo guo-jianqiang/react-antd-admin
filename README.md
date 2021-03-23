@@ -85,6 +85,8 @@ export interface aliveControlInterface {
 ```
 
 ### 2-3 支持tab拖拽
+layout draggableTab 参数可用于控制是否拖拽
+![](./static/images/tab.gif)
 
 ## 环境配置
 

@@ -10,8 +10,11 @@ import Test from './Test'
 import { deepClone, getValue, treeDeepForeach, findTreeNode } from '../../lib/until'
 import getPosition from '../../lib/getPosition'
 import { filterTree, listToTree, treeToList } from '../../lib/tree'
+import loginImg from '../../assets/images/login/login.png'
 
 CecIcon.setDefaultUrl('http://localhost:8089/icon/')
+
+
 
 const studentInfo = {
   name: '小明',
@@ -185,6 +188,9 @@ const Table = () => {
           return <Test num={i} key={i} />
         })
       }
+      <div style={{height: 200, display: 'table-cell', verticalAlign: 'middle'}}>
+        <img style={{height: 50}} src={loginImg} />
+      </div>
     </React.Fragment>
   )
 }

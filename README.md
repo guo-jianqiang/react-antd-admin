@@ -84,6 +84,8 @@ export interface aliveControlInterface {
 }
 ```
 
+### 2-3 支持tab拖拽
+
 ## 环境配置
 
 使用[cross-env](https://github.com/kentcdodds/cross-env)设置环境变量，从而实现不同环境下的可配置化，配置获取来源为根目录下的env文件夹中获取(development.json、test.json、producation.json)

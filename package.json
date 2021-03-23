@@ -109,7 +109,7 @@
     "common-tree-func": "^1.0.3",
     "history": "4.10.1",
     "js-base64": "^3.6.0",
-    "little-deer-ui": "^1.5.0",
+    "little-deer-ui": "^1.5.1",
     "npm": "^7.6.3",
     "nprogress": "^0.2.0",
     "react": "^17.0.1",

@@ -110,17 +110,6 @@ const Table = () => {
       age: 32,
       address: 'New York No. 1 Lake Park',
       tags: ['nice', 'developer'],
-      children: [
-        {
-          name: 1,
-          children: [
-            {
-              name: 3,
-              arr: [1,2,3,4, {age: 3}]
-            }
-          ]
-        }
-      ]
     },
     {
       id: 3,
@@ -178,8 +167,8 @@ const Table = () => {
   }
   return (
     <React.Fragment>
-      {/* <AntdTable columns={columns} rowKey={'key'} dataSource={data} loading={loading} /> */}
-      <Button onClick={handleClick}>切换</Button>
+      <AntdTable columns={columns} rowKey={'key'} dataSource={data} loading={loading} />
+      {/* <Button onClick={handleClick}>切换</Button>
       {
         Array.from({length: 10}).map((item, i) => {
           if (isInsertDom && i === 1) {
@@ -190,7 +179,7 @@ const Table = () => {
       }
       <div style={{height: 200, display: 'table-cell', verticalAlign: 'middle'}}>
         <img style={{height: 50}} src={loginImg} />
-      </div>
+      </div> */}
     </React.Fragment>
   )
 }

@@ -60,8 +60,7 @@ const routeItems: Array<RouteItem> = [
     exact: true,
     meta: {
       icon: 'iconyijibaogao',
-      name: '测试管理测试测试测试测试',
-      hidden: true,
+      name: '测试管理测试测试测试测试'
     },
     component: EmptyRoute,
   },
@@ -71,7 +70,6 @@ const routeItems: Array<RouteItem> = [
     meta: {
       icon: 'iconyijibaogao',
       name: '测试管理3',
-      hidden: true,
     },
     component: EmptyRoute,
   },
@@ -81,7 +79,6 @@ const routeItems: Array<RouteItem> = [
     meta: {
       icon: 'iconyijibaogao',
       name: '测试管理4',
-      hidden: true,
     },
     component: EmptyRoute,
   },

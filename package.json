@@ -10,7 +10,8 @@
     "lint:style": "stylelint \"src/**/**/*.less\" --syntax less",
     "lint:style-fix": "stylelint \"src/**/**/*.less\" --syntax less --fix",
     "lint-fix": "eslint src --fix --ext .ts,.tsx",
-    "lint": "eslint src --ext .ts,.tsx"
+    "lint": "eslint src --ext .ts,.tsx",
+    "push": "./push.sh"
   },
   "husky": {
     "hooks": {

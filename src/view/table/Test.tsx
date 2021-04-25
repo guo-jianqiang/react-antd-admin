@@ -1,32 +1,44 @@
-import React, {useEffect, useState} from 'react'
+/** @format */
 
-interface TestProps {
-  num: number,
-  key: string | number;
+import React, {useEffect, useState, useRef} from 'react'
+import './style.less'
+
+// interface TestProps {
+//   visible: boolean;
+//   onClose: () => void;
+// }
+
+class Control {
+  state: any
 }
 
-interface TestState {
-  info: Object
+interface TestProps extends Control {
+  visible: boolean
+  onClose: () => void
 }
 
-export default class Test extends React.Component<TestProps, TestState> {
-  constructor (props: TestProps) {
-    super(props)
-    this.state = {
-      info: {}
+const Test: React.FC<TestProps> = ({visible, onClose}) => {
+  const dialogRef = useRef<HTMLDivElement | null>(null)
+  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!dialogRef.current?.contains(e.target as HTMLDivElement)) {
+      onClose?.()
     }
   }
-  componentDidMount () {
-    console.log(this.props)
-  }
-  shouldComponentUpdate (nextProps: TestProps, nextState: TestState) {
-    if (this.props.num !== nextProps.num) return true
-    return false
-  }
-  componentDidUpdate () {
-    console.log('update')
-  }
-  render () {
-    return <div key={this.props.key}>{this.props.num}</div>
-  }
+  return (
+    <div>
+      <div className="dialog-root">
+        <div className="dialog-wrap" style={{visibility: visible ? 'visible' : 'hidden'}} onClick={handleClick}>
+          <div
+            ref={dialogRef}
+            className="dialog"
+            style={{animationName: visible ? 'scale-in-center' : 'scale-out-center'}}>
+            <div className="dialog-header"></div>
+            modal
+          </div>
+        </div>
+      </div>
+    </div>
+  )
 }
+
+export default Test

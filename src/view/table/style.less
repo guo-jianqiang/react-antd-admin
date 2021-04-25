@@ -1,0 +1,154 @@
+.dialog-wrap{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	transition: visibility 200ms linear;
+}
+
+.dialog{
+	padding: 16px;
+	width: 400px;
+	min-height: 400px;
+	background-color: #fff;
+	border-radius: 10px;
+	border: 1px solid #d8d8d8;
+	animation-duration: 200ms;
+	animation-timing-function: ease-in-out;
+	animation-fill-mode: forwards;
+}
+
+.drawing-wrap{
+	position: relative;
+	height: 400px;
+	border: 1px solid red;
+}
+
+.drawing-box{
+	cursor: move;
+	position: absolute;
+	// padding: 16px;
+	// overflow: auto;
+}
+
+.control-point{
+	position: absolute;
+	box-sizing: border-box;
+	display: inline-block;
+	background: #fff;
+	border: 1px solid #c0c5cf;
+	box-shadow: 0 0 2px 0 rgba(86, 90, 98, .2);
+	border-radius: 6px;
+	padding: 8px;
+	margin-top: -8px !important;
+	margin-left: -8px !important;
+	user-select: none;   // 注意禁止鼠标选中控制点元素，不然拖拽事件可能会因此被中断
+ 
+}
+
+.control-point.point-e{
+	cursor: ew-resize;
+	left: 100%;
+	top: 50%;
+	margin-left: 1px
+}
+
+.control-point.point-n{
+	cursor: ns-resize;
+	left: 50%;
+	margin-top: -1px
+}
+
+.control-point.point-s{
+	cursor: ns-resize;
+	left: 50%;
+	top: 100%;
+	margin-top: 1px
+}
+
+.control-point.point-w{
+	cursor: ew-resize;
+	top: 50%;
+	left: 0;
+	margin-left: -1px
+}
+
+.control-point.point-ne {
+	cursor: nesw-resize;
+	left: 100%;
+	margin-top: -1px;
+	margin-left: 1px
+}
+
+.control-point.point-nw {
+	cursor: nwse-resize;
+	margin-left: -1px;
+	margin-top: -1px
+}
+
+.control-point.point-se {
+	cursor: nwse-resize;
+	left: 100%;
+	top: 100%;
+	margin-left: 1px;
+	margin-top: 1px
+}
+
+.control-point.point-sw {
+	cursor: nesw-resize;
+	top: 100%;
+	margin-left: -1px;
+	margin-top: 1px
+}
+
+.slider{
+	display: flex;
+	height: 500px;
+}
+
+.slider-left {
+  
+}
+
+.slider-btn{
+	position: relative;
+	width: 24px;
+	border: 1px solid red;
+	cursor: ew-resize;
+}
+
+.slider-right{
+	flex: 1;
+	overflow: hidden;
+}
+@keyframes scale-in-center {
+	0% {
+		-webkit-transform: scale(0);
+		transform: scale(0);
+		opacity: 1;
+	}
+
+	100% {
+		-webkit-transform: scale(1);
+		transform: scale(1);
+		opacity: 1;
+	}
+}
+
+@keyframes scale-out-center {
+	0% {
+		-webkit-transform: scale(1);
+		transform: scale(1);
+		opacity: 1;
+	}
+
+	100% {
+		-webkit-transform: scale(0);
+		transform: scale(0);
+		opacity: 1;
+	}
+}

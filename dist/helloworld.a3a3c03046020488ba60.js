@@ -1,0 +1,1 @@
+(self.webpackChunkreact_template=self.webpackChunkreact_template||[]).push([[405],{98e3:(e,t,a)=>{"use strict";function test(){}a.r(t),a.d(t,{default:()=>test})}}]);

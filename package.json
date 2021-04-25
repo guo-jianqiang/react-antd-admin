@@ -20,11 +20,11 @@
   },
   "lint-staged": {
     "src/**/*.{ts,tsx}": [
-      "eslint --fix",
+      "lint-fix",
       "git add"
     ],
     "src/**/**/*.less": [
-      "stylelint --config=.stylelintrc.js --fix",
+      "lint:style-fix",
       "git add"
     ]
   },

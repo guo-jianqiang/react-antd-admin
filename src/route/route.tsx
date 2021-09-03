@@ -15,7 +15,7 @@ import Login from '../view/login'
 import routeItems, {RouteItem} from './routeItems'
 // import Layout from '../layout/Layout'
 import pkg from '../../package.json'
-import {Layout} from 'little-deer-ui'
+import Layout from '@rainbow_deer/layout'
 import {removeUserData, UserInterface} from '../lib/userData'
 import userContext from '../context/userContext'
 import {getFirstRoute, isEmpty} from '../lib/until'
@@ -83,8 +83,7 @@ const Routes = () => {
             username={userData?.username || ''}
             history={history}
             aliveControl={aliveControl}
-            onClickDrop={handleClickDrop}
-          >
+            onClickDrop={handleClickDrop}>
             {renderRoutes()}
           </Layout>
         </CacheSwitch>

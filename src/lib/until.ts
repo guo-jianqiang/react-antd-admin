@@ -1,6 +1,6 @@
 /** @format */
 
-import { RouteItem } from '../route/routeItems'
+import {RouteItem} from '../route/routeItems'
 
 /**
  * @description 判空
@@ -19,7 +19,7 @@ export const isEmpty = (obj: any) => {
 }
 
 // 广度优先
-export function treeForeach<T extends { routes?: Array<T> }>(tree: Array<T>, func: (node: T) => void) {
+export function treeForeach<T extends {routes?: Array<T>}>(tree: Array<T>, func: (node: T) => void) {
   let node
   const list = [...tree]
   while ((node = list.shift())) {
@@ -27,17 +27,17 @@ export function treeForeach<T extends { routes?: Array<T> }>(tree: Array<T>, fun
     node.routes && list.push(...node.routes)
   }
 }
-type nodeType = { [index: string]: any }
+type nodeType = {[index: string]: any}
 /**
  * 深度优先遍历，返回节点信息及深度
- * @param tree 
- * @param func 
- * @param childrenKey 
+ * @param tree
+ * @param func
+ * @param childrenKey
  */
 export const treeDeepForeach = (
   tree: Array<any> | Object,
   func: (node: nodeType, deep: number) => void,
-  childrenKey = 'children'
+  childrenKey = 'children',
 ) => {
   let deep = 0
   const each = (node: nodeType) => {
@@ -61,17 +61,17 @@ export const treeDeepForeach = (
 /**
  * @author guojianqiang
  * @description 查找匹配树节点并返回当前节点信息及深度
- * @param tree 
- * @param func 
+ * @param tree
+ * @param func
  * @param childrenKey
  */
 export const findTreeNode = (
   tree: Array<any> | Object,
   func: (node: nodeType) => boolean,
-  childrenKey = 'children'
+  childrenKey = 'children',
 ) => {
   let deep = 0
-  const find: (node: nodeType) => any = (node) => {
+  const find: (node: nodeType) => any = node => {
     deep++
     if (func(node)) {
       return {...node, deep}
@@ -157,7 +157,7 @@ export const getObjectURL = (file: File) => {
   return url
 }
 
-export const deepAssign: (to: { [key: string]: any }, from: { [key: string]: any }) => Object = (to, from) => {
+export const deepAssign: (to: {[key: string]: any}, from: {[key: string]: any}) => Object = (to, from) => {
   Object.keys(from).forEach(key => {
     const val = from[key]
     if (typeof val === 'object') {
@@ -169,7 +169,7 @@ export const deepAssign: (to: { [key: string]: any }, from: { [key: string]: any
   return to
 }
 
-export const deepClone: (obj: Object) => Object = (obj) => {
+export const deepClone: (obj: Object) => Object = obj => {
   if (Array.isArray(obj)) {
     return obj.map(item => deepClone(item))
   }
@@ -179,10 +179,10 @@ export const deepClone: (obj: Object) => Object = (obj) => {
   return obj
 }
 
-export const getValue: (origin: { [key: string]: any }, path: string) => any = (origin, path) => {
+export const getValue: (origin: {[key: string]: any}, path: string) => any = (origin, path) => {
   const reg = /\["?([0-9a-zA-Z_-]+)"?\]/g
   const pathArr: any[] = path.replace(reg, '.$1').split('.')
-  let val = { ...origin }
+  let val = {...origin}
   for (let i = 0; i < pathArr.length; i++) {
     const key = pathArr[i]
     if (!val) return val

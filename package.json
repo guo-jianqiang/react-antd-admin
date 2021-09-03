@@ -20,12 +20,7 @@
   },
   "lint-staged": {
     "src/**/*.{ts,tsx}": [
-      "lint-fix",
-      "git add"
-    ],
-    "src/**/**/*.less": [
-      "lint:style-fix",
-      "git add"
+      "eslint src --fix --ext .ts,.tsx"
     ]
   },
   "repository": {
@@ -104,13 +99,13 @@
     "webpackbar": "^5.0.0-3"
   },
   "dependencies": {
-    "antd": "^4.11.2",
+    "@rainbow_deer/layout": "^0.1.6",
+    "antd": "^4.16.2",
     "axios": "^0.21.1",
     "classnames": "^2.2.6",
     "common-tree-func": "^1.0.3",
     "history": "4.10.1",
     "js-base64": "^3.6.0",
-    "little-deer-ui": "^1.5.1",
     "npm": "^7.6.3",
     "nprogress": "^0.2.0",
     "react": "^17.0.1",

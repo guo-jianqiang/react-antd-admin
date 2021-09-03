@@ -1,6 +1,7 @@
+/** @format */
 
 // 深拷贝
-export const deepAssign: (to: { [key: string]: any }, from: { [key: string]: any }) => Object = (to, from) => {
+export const deepAssign: (to: {[key: string]: any}, from: {[key: string]: any}) => Object = (to, from) => {
   Object.keys(from).forEach(key => {
     const val = from[key]
     if (typeof val === 'object') {
@@ -12,7 +13,7 @@ export const deepAssign: (to: { [key: string]: any }, from: { [key: string]: any
   return to
 }
 
-export const deepClone: (obj: Object) => Object = (obj) => {
+export const deepClone: (obj: Object) => Object = obj => {
   if (Array.isArray(obj)) {
     return obj.map(item => deepClone(item))
   }
@@ -23,7 +24,7 @@ export const deepClone: (obj: Object) => Object = (obj) => {
 }
 
 // 广度优先
-export function treeForeach<T extends { routes?: Array<T> }>(tree: Array<T>, func: (node: T) => void) {
+export function treeForeach<T extends {routes?: Array<T>}>(tree: Array<T>, func: (node: T) => void) {
   let node
   const list = [...tree]
   while ((node = list.shift())) {
@@ -31,17 +32,17 @@ export function treeForeach<T extends { routes?: Array<T> }>(tree: Array<T>, fun
     node.routes && list.push(...node.routes)
   }
 }
-type nodeType = { [index: string]: any }
+type nodeType = {[index: string]: any}
 /**
  * 深度优先遍历，返回节点信息及深度
- * @param tree 
- * @param func 
- * @param childrenKey 
+ * @param tree
+ * @param func
+ * @param childrenKey
  */
 export const treeDeepForeach = (
   tree: Array<any> | Object,
   func: (node: nodeType, deep: number) => void,
-  childrenKey = 'children'
+  childrenKey = 'children',
 ) => {
   let deep = 0
   const each = (node: nodeType) => {
@@ -65,25 +66,25 @@ export const treeDeepForeach = (
 /**
  * @author guojianqiang
  * @description 查找匹配树节点并返回当前节点信息及深度
- * @param tree 
- * @param func 
+ * @param tree
+ * @param func
  * @param childrenKey
  */
 export const findTreeNode = (
   tree: Array<any> | Object,
   func: (node: nodeType) => boolean,
-  childrenKey = 'children'
+  childrenKey = 'children',
 ) => {
   let deep = 0
-  const find: (node: nodeType) => any = (node) => {
+  const find: (node: nodeType) => any = node => {
     deep++
     if (func(node)) {
-      return { ...node, deep }
+      return {...node, deep}
     }
     if (node[childrenKey] && node[childrenKey].length) {
       for (let item of node[childrenKey]) {
         const rnode = find(item)
-        if (rnode) return { ...rnode, deep }
+        if (rnode) return {...rnode, deep}
       }
     }
     deep--
@@ -100,15 +101,11 @@ export const findTreeNode = (
 }
 /**
  * 树条件过滤
- * @param tree 
- * @param func 
- * @param childrenKey 
+ * @param tree
+ * @param func
+ * @param childrenKey
  */
-export const filterTree = (
-  tree: any,
-  func: (node: nodeType) => boolean,
-  childrenKey = 'children'
-) => {
+export const filterTree = (tree: any, func: (node: nodeType) => boolean, childrenKey = 'children') => {
   let _tree
   if (typeof tree !== 'object') {
     console.warn('the tree is not object')
@@ -118,20 +115,22 @@ export const filterTree = (
     _tree = [tree]
   }
   _tree = [...tree]
-  const filter: (arr: Array<any>) => Array<any> = (arr) => {
-    return arr.map(node => ({...node})).filter((item) => {
-      if (item[childrenKey] && item[childrenKey].length) item[childrenKey] = filter(item[childrenKey])
-      if (item[childrenKey] && !item[childrenKey].length) delete item[childrenKey]
-      return (item[childrenKey] && item[childrenKey]) || func(item)
-    })
+  const filter: (arr: Array<any>) => Array<any> = arr => {
+    return arr
+      .map(node => ({...node}))
+      .filter(item => {
+        if (item[childrenKey] && item[childrenKey].length) item[childrenKey] = filter(item[childrenKey])
+        if (item[childrenKey] && !item[childrenKey].length) delete item[childrenKey]
+        return (item[childrenKey] && item[childrenKey]) || func(item)
+      })
   }
   return filter(_tree)
 }
 
-type listNodeType = {parentId: number | string, id: number | string, [key: string]: any}
+type listNodeType = {parentId: number | string; id: number | string; [key: string]: any}
 /**
  * 数组转树
- * @param list 
+ * @param list
  * @param childrenKey 孩子键
  * @param parentIdKey 父id键
  * @param defaultRootId 默认根级id
@@ -140,7 +139,7 @@ export const listToTree = (
   list: Array<listNodeType>,
   childrenKey = 'children',
   parentIdKey = 'parentId',
-  defaultRootId = 0
+  defaultRootId = 0,
 ) => {
   const map = list.reduce((prevMap: any, current) => {
     prevMap[current.id] = current
@@ -156,17 +155,18 @@ export const listToTree = (
 }
 /**
  * 树转数组
- * @param tree 
- * @param childrenKey 
+ * @param tree
+ * @param childrenKey
  */
-export const treeToList = (
-  tree: any,
-  childrenKey = 'children'
-) => {
+export const treeToList = (tree: any, childrenKey = 'children') => {
   const list: Array<any> = []
-  treeDeepForeach(tree, node => {
-    list.push(node)
-  }, childrenKey)
+  treeDeepForeach(
+    tree,
+    node => {
+      list.push(node)
+    },
+    childrenKey,
+  )
   return list
 }
 

@@ -69,7 +69,7 @@ const config: webpack.Configuration = {
                 "@babel/plugin-syntax-dynamic-import",
                 ['import', {
                   'libraryName': 'antd',
-                  'style': true
+                  'style': 'css'
                 }, 'antd']
               ]
             },

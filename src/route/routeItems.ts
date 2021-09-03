@@ -27,7 +27,7 @@ const routeItems: Array<RouteItem> = [
     meta: {
       tabFixed: true,
       isCache: true,
-      icon: 'iconuser',
+      icon: 'success',
       name: '首页',
     },
     component: ReadMe,
@@ -36,7 +36,7 @@ const routeItems: Array<RouteItem> = [
     path: '/test',
     exact: true,
     meta: {
-      icon: 'iconyijibaogao',
+      icon: 'success',
       isCache: true,
       name: '测试管理',
       hidden: true,
@@ -47,7 +47,7 @@ const routeItems: Array<RouteItem> = [
         path: '/test/table',
         exact: true,
         meta: {
-          icon: 'iconuser',
+          icon: 'success',
           name: '列表',
           isCache: true,
         },
@@ -59,8 +59,8 @@ const routeItems: Array<RouteItem> = [
     path: '/tesafst2',
     exact: true,
     meta: {
-      icon: 'iconyijibaogao',
-      name: '测试管理测试测试测试测试'
+      icon: 'success',
+      name: '测试管理测试测试测试测试',
     },
     component: EmptyRoute,
   },
@@ -68,7 +68,7 @@ const routeItems: Array<RouteItem> = [
     path: '/tegst3',
     exact: true,
     meta: {
-      icon: 'iconyijibaogao',
+      icon: 'success',
       name: '测试管理3',
     },
     component: EmptyRoute,
@@ -77,7 +77,7 @@ const routeItems: Array<RouteItem> = [
     path: '/tegst10',
     exact: true,
     meta: {
-      icon: 'iconyijibaogao',
+      icon: 'success',
       name: '测试管理4',
     },
     component: EmptyRoute,
@@ -86,7 +86,7 @@ const routeItems: Array<RouteItem> = [
     path: '/tefsfst9',
     exact: true,
     meta: {
-      icon: 'iconyijibaogao',
+      icon: 'success',
       name: '测试管理4',
       hidden: true,
     },
@@ -96,7 +96,7 @@ const routeItems: Array<RouteItem> = [
     path: '/te43st8',
     exact: true,
     meta: {
-      icon: 'iconyijibaogao',
+      icon: 'success',
       name: '测试管理4',
       hidden: true,
     },
@@ -106,7 +106,7 @@ const routeItems: Array<RouteItem> = [
     path: '/te23st5',
     exact: true,
     meta: {
-      icon: 'iconyijibaogao',
+      icon: 'success',
       name: '测试管理4',
       hidden: true,
     },
@@ -116,7 +116,7 @@ const routeItems: Array<RouteItem> = [
     path: '/test236',
     exact: true,
     meta: {
-      icon: 'iconyijibaogao',
+      icon: 'success',
       name: '测试管理4',
       hidden: true,
     },
@@ -126,7 +126,7 @@ const routeItems: Array<RouteItem> = [
     path: '/tes2t7',
     exact: true,
     meta: {
-      icon: 'iconyijibaogao',
+      icon: 'home',
       name: '测试管理4',
       hidden: true,
     },

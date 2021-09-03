@@ -11,7 +11,7 @@
 git地址 [https://github.com/guo-jianqiang/react-antd-admin](https://github.com/guo-jianqiang/react-antd-admin)
   
 ## 单独使用Layout
-详情请查看[little-deer-ui](https://gitee.com/gjq0208/little-deer-ui)
+详情请查看[rainbow_deer/layout](https://guo-jianqiang.github.io/rainbow_deer/Components/ReactComponent/layout#/)
 
 ## 1.ConfigurationDrawer
 

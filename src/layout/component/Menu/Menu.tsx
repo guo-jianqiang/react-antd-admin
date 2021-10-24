@@ -6,7 +6,7 @@ import {MenuInfo} from 'rc-menu/lib/interface'
 import {RouteItem} from '../../../route/routeItems'
 import {History} from 'history'
 import {getTreePath} from '../../../lib/until'
-import Icon from '../../../commpent/icon/Icon'
+import Icon from '../../../components/icon/Icon'
 
 const {Item, SubMenu} = AntdMenu
 

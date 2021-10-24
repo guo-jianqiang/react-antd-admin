@@ -8,7 +8,7 @@ import './style.less'
 import ThemeConfiguration from './ThemeConfiguration'
 import ConfigurationBtn from './ConfigurationBtn'
 import {SYSTEM_CONFIG_DRAWER_WIDTH} from '../../../constant'
-import IconSelect from '../../../commpent/IconSelect/IconSelect'
+import IconSelect from '../../../components/IconSelect/IconSelect'
 
 const ConfigurationDrawer: FC<any> = () => {
   const [visible, setVisible] = useState(false)

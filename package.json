@@ -99,6 +99,7 @@
     "webpackbar": "^5.0.0-3"
   },
   "dependencies": {
+    "@rainbow_deer/dialog": "^0.1.7",
     "@rainbow_deer/layout": "^0.1.6",
     "antd": "^4.16.2",
     "axios": "^0.21.1",

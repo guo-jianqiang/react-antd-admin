@@ -7,7 +7,7 @@ import cx from 'classnames'
 import {History} from 'history'
 import './style.less'
 import {LOGIN_PATH} from '../../../constant'
-import Icon from '../../../commpent/icon/Icon'
+import Icon from '../../../components/icon/Icon'
 
 export interface HeaderProps {
   username: string

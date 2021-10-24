@@ -6,14 +6,14 @@ import {UserOutlined, LockOutlined} from '@ant-design/icons'
 import project from '../../../package.json'
 import style from './style.m.less'
 import LoginImg from '../../assets/images/login/login.png'
-import Icon from '../../commpent/icon/Icon'
+import Icon from '../../components/icon/Icon'
 import {getItem, removeItem, setItem} from '../../lib/localStorage'
 import {ACCOUNT_INFO} from '../../constant'
 import {getFirstRoute} from '../../lib/until'
 import history from '../../route/history'
 import routeItems from '../../route/routeItems'
 import userContext from '../../context/userContext'
-import IconSelect from '../../commpent/IconSelect/IconSelect'
+import IconSelect from '../../components/IconSelect/IconSelect'
 
 const layout = {
   // labelCol: { span: 6 },

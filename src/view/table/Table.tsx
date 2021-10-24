@@ -1,68 +1,11 @@
 /** @format */
 
-import React, {useEffect, useState, ReactElement} from 'react'
+import React, {useEffect, useState} from 'react'
 import {createPortal} from 'react-dom'
-import {Table as AntdTable, Space, Tag, message, Button} from 'antd'
-import {useDidCache, useDidRecover} from 'react-router-cache-route'
+import {Table as AntdTable, Space, Tag, message} from 'antd'
+import {useDidRecover} from 'react-router-cache-route'
 import {ColumnType} from 'antd/lib/table/interface'
-import CecIcon from '../../commpent/SvgIcon/SvgIcon'
-import Test from './Test'
-import {findTreeNode, treeToList} from 'common-tree-func'
-import {deepClone, getValue, treeDeepForeach} from '../../lib/until'
 import getPosition from '../../lib/getPosition'
-import {filterTree, listToTree} from '../../lib/tree'
-import loginImg from '../../assets/images/login/login.png'
-import Portal from './Portal'
-import InnerCom from './InnerCom'
-import DragSlider from './DragSlider'
-
-CecIcon.setDefaultUrl('http://localhost:8089/icon/')
-
-const tree = [
-  {
-    name: 1,
-    children: [
-      {
-        name: 2,
-        children: [
-          {
-            name: 3,
-          },
-        ],
-      },
-      {
-        name: 4,
-        children: [
-          {
-            name: 5,
-          },
-        ],
-      },
-    ],
-  },
-]
-
-console.log(treeToList(findTreeNode(tree, node => node.name === 4)))
-
-const studentInfo = {
-  name: '小明',
-  age: 12,
-  favoriteFoods: ['apple', 'dumpling'],
-  habits: [{name: 'skating', 'zh-CN': '滑冰'}],
-  parents: {
-    0: {
-      relationShip: 'Dad',
-      name: '小明他爸',
-    },
-    Mom: '小明他妈',
-  },
-}
-console.log(getValue(studentInfo, 'name'))
-console.log(getValue(studentInfo, 'favoriteFoods[0]'))
-console.log(getValue(studentInfo, 'habits[0]["zh-CN"]'))
-console.log(getValue(studentInfo, 'habits[1].name')) // undefined
-console.log(getValue(studentInfo, 'parents.Mom'))
-console.log(getValue(studentInfo, 'parents[0].name'))
 
 type recordProps = {
   parentId: string | number
@@ -87,11 +30,6 @@ const Table = () => {
       title: 'Age',
       dataIndex: 'age',
       key: 'age',
-    },
-    {
-      title: 'Address',
-      dataIndex: 'address',
-      key: 'address',
     },
     {
       title: 'Tags',
@@ -163,15 +101,6 @@ const Table = () => {
       tags: ['cool', 'teacher'],
     },
   ]
-  treeDeepForeach(data, (node, deep) => {
-    console.log(node)
-    console.log(deep)
-  })
-  console.log(listToTree(data))
-  console.log(findTreeNode(data, node => node.name === 3))
-  console.log(filterTree('2', node => node.name === 1))
-  // console.log(treeToList(listToTree(data)))
-  console.log(data)
   useDidRecover(() => {
     message.success('进入缓存')
   })
@@ -186,25 +115,9 @@ const Table = () => {
     const tooltip = <span style={{left, top, position: 'fixed'}}>hhhh</span>
     createPortal(tooltip, document.body)
   }
-  const handleClick = () => {
-    setIsInsertDom(!isInsertDom)
-  }
-  const handleClickModalOpen = () => {
-    setVisible(!visible)
-    import(/* webpackChunkName: "helloworld" */ '../../route/test').then(({default: test}) => {
-      test()
-    })
-  }
   return (
     <React.Fragment>
       <AntdTable columns={columns} rowKey={'key'} dataSource={data} loading={loading} />
-      <Button onClick={handleClickModalOpen}>modal</Button>
-      <Test state={1} onClose={() => setVisible(false)} visible={visible} />
-      {/* <InnerCom visible={visible} /> */}
-      {/* <Portal visible={visible}>
-        <Test onClose={() => setVisible(false)} visible={visible} />
-      </Portal> */}
-      <DragSlider />
     </React.Fragment>
   )
 }

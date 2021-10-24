@@ -1,4 +1,4 @@
 /** @format */
 
-import LazyComponent from '../../commpent/LazyComponent/LazyComponent'
+import LazyComponent from '../../components/LazyComponent/LazyComponent'
 export default LazyComponent(() => import(/* webpackChunkName: "Login" */ './Login'))

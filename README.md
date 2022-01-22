@@ -1,57 +1,44 @@
 
 
 # react-antd-admin
+![](./static/images/system.png)
 
 基于react+ts+antd构建的管理后台脚手架模版
 
-![](./static/images/system.png)
+## install npm packages
+```shell
+npm install
+yarn install
+```
+## run
+```shell
+npm run dev
+```
+Project is running at http://localhost:8000/
 
-线上地址[ http://gjq0208.gitee.io/react-antd-admin]( http://gjq0208.gitee.io/react-antd-admin)
+## build
+```shell
+npm run build
+```
 
-git地址 [https://github.com/guo-jianqiang/react-antd-admin](https://github.com/guo-jianqiang/react-antd-admin)
-  
-## 单独使用Layout
-详情请查看[rainbow_deer/layout](https://guo-jianqiang.github.io/rainbow_deer/Components/ReactComponent/layout#/)
-
-## 1.ConfigurationDrawer
-
-### 1-1.可缓存系统配置
-
-记录用户使用的系统配置，缓存浏览器中，记录用户习惯.
-
-### 1-2.antd换肤(Layout组件未封装)
-![](./static/images/theme.gif)
-
-使用[antd-theme-webpack-plugin](https://github.com/mzohaibqc/antd-theme-webpack-plugin)插件实现导出antd样式文件并绑定cssVariable，通过less.js 浏览器在线编译改变less variable 方法实现主题样式变更
-
-```less
-@import "_var";
-
-:root{
-	--primary-color: @primary-color;
-	--danger-color: red;
+## 约定式路由
+```tsx
+export interface RouteItem {
+  path: string // 路径
+  exact: boolean // 是否精准匹配
+  meta: {
+    tabFixed?: boolean // 是否固定tab项
+    isCache?: boolean // 是否路由缓存
+    name: string // 名字
+    icon: Function | string // 图标
+    hidden?: boolean // 是否隐藏菜单
+  }
+  component: ComponentType // 渲染组件
+  routes?: Array<RouteItem> // 孩子路由
 }
 ```
 
-
-
-```ts
-window.less.modifyVars(vars).then(() => {
-    if (vars['@primary-color'] === getItem(SYSTEM_CONFIG).primaryColor) return
-    message.success('主题色切换成功')
-  })
-  window.less.refreshStyles()
-```
-
-
-
-
-
-## 2.Tab
-
-### 2-1.支持可缓存路由
-
-![](./static/images/route-cache.gif)
+## 可缓存路由
 
 配置只需在routeItems文件中配置参数即可，如下
 
@@ -61,19 +48,15 @@ export interface RouteItem {
   exact: boolean
   meta: {
     tabFixed?: boolean // 是否固定tab项
-    isCache?: boolean // 是否路由缓存
-    name: string
-    icon: Function | string
-    hidden?: boolean // 是否隐藏菜单
+    ...
   }
   component: ComponentType
   routes?: Array<RouteItem>
 }
 ```
 
-### 2-2.支持清除路由缓存
-
-Layout组件中传入缓存控制函数，更多信息请查看[react-router-cache-route](https://github.com/CJY0208/react-router-cache-route)
+## 支持清除路由缓存
+**Tab支持右键contextmenu路由刷新**。Layout组件中传入缓存控制函数，更多信息请查看[react-router-cache-route](https://github.com/CJY0208/react-router-cache-route)
 
 ```tsx
 export interface aliveControlInterface {
@@ -86,7 +69,6 @@ export interface aliveControlInterface {
 
 ### 2-3 支持tab拖拽
 layout draggableTab 参数可用于控制是否拖拽
-![](./static/images/tab.gif)
 
 ## 环境配置
 
@@ -121,20 +103,5 @@ plugins: [
   ]
 ```
 
-## 初始化
-
-```shell
-yarn install
-or
-npm install
-```
-## 运行
-```shell
-npm run dev
-```
-[http://localhost:8000/](http://localhost:8000/)
-
-## 打包
-```shell
-npm run build
-```
+## 单独使用Layout
+详情请查看[rainbow_deer/layout](https://guo-jianqiang.github.io/rainbow_deer/Components/ReactComponent/layout#/)

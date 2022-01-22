@@ -1,27 +1,26 @@
 
 
 # react-antd-admin
-![](./static/images/system.png)
 
 基于react+ts+antd构建的管理后台脚手架模版
 
-## install npm packages
+### install npm packages
 ```shell
 npm install
 yarn install
 ```
-## run
+### run
 ```shell
 npm run dev
 ```
 Project is running at http://localhost:8000/
 
-## build
+### build
 ```shell
 npm run build
 ```
 
-## 约定式路由
+### 约定式路由
 ```tsx
 export interface RouteItem {
   path: string // 路径
@@ -38,7 +37,7 @@ export interface RouteItem {
 }
 ```
 
-## 可缓存路由
+### 可缓存路由
 
 配置只需在routeItems文件中配置参数即可，如下
 
@@ -55,7 +54,7 @@ export interface RouteItem {
 }
 ```
 
-## 支持清除路由缓存
+### 支持清除路由缓存
 **Tab支持右键contextmenu路由刷新**。Layout组件中传入缓存控制函数，更多信息请查看[react-router-cache-route](https://github.com/CJY0208/react-router-cache-route)
 
 ```tsx
@@ -67,10 +66,10 @@ export interface aliveControlInterface {
 }
 ```
 
-### 2-3 支持tab拖拽
+### 支持tab拖拽
 layout draggableTab 参数可用于控制是否拖拽
 
-## 环境配置
+### 环境配置
 
 使用[cross-env](https://github.com/kentcdodds/cross-env)设置环境变量，从而实现不同环境下的可配置化，配置获取来源为根目录下的env文件夹中获取(development.json、test.json、producation.json)
 
@@ -103,5 +102,5 @@ plugins: [
   ]
 ```
 
-## 单独使用Layout
+### 单独使用Layout
 详情请查看[rainbow_deer/layout](https://guo-jianqiang.github.io/rainbow_deer/Components/ReactComponent/layout#/)
